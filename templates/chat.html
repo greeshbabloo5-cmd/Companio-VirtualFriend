@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Companio Chat</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="{{ url_for('static',filename='css/chat.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo">
+
+                🤖 Companio
+
+            </div>
+
+            <a href="{{ url_for('new_chat') }}" class="new-chat">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Chat
+
+            </a>
+
+            <div class="history-title">
+
+                Recent Conversations
+
+            </div>
+
+            <div class="history">
+
+                {% for conversation in conversations %}
+
+                <a
+
+                class="history-item {% if conversation.id==conversation_id %}active{% endif %}"
+
+                href="{{ url_for('open_conversation',conversation_id=conversation.id) }}">
+
+                    <i class="fa-regular fa-message"></i>
+
+                    {{ conversation.title }}
+
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="bottom-links">
+
+            <a href="{{ url_for('dashboard') }}">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <!-- Top Bar -->
+
+        <div class="topbar">
+
+            <h2>Companio AI Assistant</h2>
+
+            <div class="profile">
+
+                {{ username[0] }}
+
+            </div>
+
+        </div>
+
+        <!-- Chat -->
+
+        <div id="chat-box" class="chat-box">
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    {% if message.role=="assistant" %}
+
+                    <div class="ai-message">
+
+                        <div class="avatar">
+
+                            🤖
+
+                        </div>
+
+                        <div class="bubble">
+
+                            {{ message.content }}
+
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="user-message">
+
+                        <div class="bubble">
+
+                            {{ message.content }}
+
+                        </div>
+
+                        <div class="avatar user">
+
+                            {{ username[0] }}
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+{% else %}
+
+<div class="welcome">
+
+    <div class="robot">
+        🤖
+    </div>
+
+    <h1>Hello {{ username }} 👋</h1>
+
+    <p class="welcome-text">
+        I'm <b>Companio</b>, your AI Mental Wellness Companion.
+    </p>
+
+    <p class="subtitle">
+        How are you feeling today?
+    </p>
+
+    <div class="suggestion-grid">
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('I am feeling stressed today.')">
+
+            <div class="emoji">😔</div>
+
+            <h3>Feeling Stressed</h3>
+
+            <p>Let's talk about what's worrying you.</p>
+
+        </div>
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('Can you motivate me today?')">
+
+            <div class="emoji">💙</div>
+
+            <h3>Need Motivation</h3>
+
+            <p>Receive positive encouragement.</p>
+
+        </div>
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('Help me study effectively.')">
+
+            <div class="emoji">📚</div>
+
+            <h3>Study Help</h3>
+
+            <p>Improve focus and productivity.</p>
+
+        </div>
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('I want career advice.')">
+
+            <div class="emoji">🎯</div>
+
+            <h3>Career Advice</h3>
+
+            <p>Plan your future with confidence.</p>
+
+        </div>
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('I just want someone to talk to.')">
+
+            <div class="emoji">💬</div>
+
+            <h3>Let's Talk</h3>
+
+            <p>I'm here to listen.</p>
+
+        </div>
+
+        <div class="suggestion-card"
+             onclick="useSuggestion('Give me some mindfulness exercises.')">
+
+            <div class="emoji">🧘</div>
+
+            <h3>Relax</h3>
+
+            <p>Breathe and reduce stress.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+        <!-- Input -->
+
+        <div class="input-area">
+
+            <button>
+
+                <i class="fa-solid fa-paperclip"></i>
+
+            </button>
+
+            <input
+
+            id="message"
+
+            placeholder="Message Companio...">
+
+            <button>
+
+                <i class="fa-solid fa-microphone"></i>
+
+            </button>
+
+            <button id="sendBtn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static',filename='js/chat.js') }}"></script>
+
+</body>
+
+</html>

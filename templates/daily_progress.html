@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Companio | Daily Progress</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/daily_progress.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div>
+
+            <h1>Daily Progress</h1>
+
+            <p>Track your emotional journey with AI insights.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-face-smile"></i>
+
+            <h3>Today's Mood</h3>
+
+            <h2>😊 Happy</h2>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-fire"></i>
+
+            <h3>Current Streak</h3>
+
+            <h2>5 Days</h2>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-heart"></i>
+
+            <h3>Wellness Score</h3>
+
+            <h2>87%</h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- Charts -->
+
+    <div class="charts">
+
+        <div class="chart-card">
+
+            <h2>Weekly Mood Trend</h2>
+
+            <canvas id="moodChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h2>Mood Distribution</h2>
+
+            <canvas id="pieChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI Analysis -->
+
+    <div class="analysis">
+
+        <h2>🤖 AI Mood Analysis</h2>
+
+        <p id="analysisText">
+
+            Your mood has remained positive throughout the week.
+            Keep maintaining your healthy routine and continue
+            practicing mindfulness.
+
+        </p>
+
+    </div>
+
+
+    <!-- Achievements -->
+
+    <div class="achievements">
+
+        <h2>🏆 Today's Achievements</h2>
+
+        <ul>
+
+            <li>✅ Completed Breathing Exercise</li>
+
+            <li>✅ Had a Positive Conversation</li>
+
+            <li>✅ Logged Today's Mood</li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- Recommendations -->
+
+    <div class="recommendations">
+
+        <h2>💡 AI Recommendations</h2>
+
+        <div class="recommend-grid">
+
+            <div class="recommend-card">
+
+                🎵
+
+                <h3>Relaxing Music</h3>
+
+                <p>Listen to calm music for 15 minutes.</p>
+
+            </div>
+
+            <div class="recommend-card">
+
+                🚶
+
+                <h3>Take a Walk</h3>
+
+                <p>Spend 10 minutes outdoors.</p>
+
+            </div>
+
+            <div class="recommend-card">
+
+                🧘
+
+                <h3>Meditation</h3>
+
+                <p>Practice deep breathing for 5 minutes.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/daily_progress.js') }}"></script>
+
+</body>
+
+</html>

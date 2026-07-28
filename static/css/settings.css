@@ -1,0 +1,350 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#f4f7fc;
+
+}
+
+.settings-container{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* Sidebar */
+
+.settings-sidebar{
+
+    width:270px;
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:30px;
+
+}
+
+.settings-sidebar h2{
+
+    margin-bottom:35px;
+
+}
+
+.settings-sidebar ul{
+
+    list-style:none;
+
+}
+
+.settings-sidebar li{
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.settings-sidebar li:hover,
+.settings-sidebar .active{
+
+    background:#2563eb;
+
+}
+
+.settings-sidebar .danger{
+
+    color:#ff6b6b;
+
+}
+
+.back-btn{
+
+    display:block;
+
+    margin-top:40px;
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+/* Content */
+
+.settings-content{
+
+    flex:1;
+
+    padding:40px;
+
+}
+
+.settings-content h1{
+
+    margin-bottom:30px;
+
+    color:#0f172a;
+
+}
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.card h3{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+
+}
+
+.card label{
+
+    display:block;
+
+    margin-top:12px;
+
+    margin-bottom:8px;
+
+}
+
+.card input[type=text],
+.card input[type=email],
+.card select{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+button{
+
+    padding:12px 25px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.danger-btn{
+
+    background:#dc2626;
+
+}
+
+.danger-btn:hover{
+
+    background:#b91c1c;
+
+}
+/* ===========================
+   Settings Header
+=========================== */
+
+.settings-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.settings-header h1{
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.settings-header p{
+
+    color:#64748b;
+
+}
+
+/* ===========================
+   Toggle Switch
+=========================== */
+
+.theme-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.theme-toggle span{
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+.switch{
+
+    position:relative;
+
+    width:60px;
+
+    height:32px;
+
+}
+
+.switch input{
+
+    display:none;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    cursor:pointer;
+
+    inset:0;
+
+    background:#cbd5e1;
+
+    border-radius:30px;
+
+    transition:.4s;
+
+}
+
+.slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:24px;
+
+    height:24px;
+
+    left:4px;
+
+    top:4px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transition:.4s;
+
+}
+
+input:checked + .slider{
+
+    background:#2563eb;
+
+}
+
+input:checked + .slider::before{
+
+    transform:translateX(28px);
+
+}
+/* ===========================
+   Dark Mode
+=========================== */
+
+body.dark-mode{
+
+    background:#0f172a;
+
+    transition:.4s;
+
+}
+
+body.dark-mode .settings-content{
+
+    color:white;
+
+}
+
+body.dark-mode .settings-header h1{
+
+    color:white;
+
+}
+
+body.dark-mode .settings-header p{
+
+    color:#cbd5e1;
+
+}
+
+body.dark-mode .card{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+body.dark-mode input,
+body.dark-mode select{
+
+    background:#334155;
+
+    color:white;
+
+    border-color:#475569;
+
+}

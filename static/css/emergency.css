@@ -1,0 +1,533 @@
+/* ================= GOOGLE FONT ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#eef4ff,#f9fbff);
+
+    min-height:100vh;
+
+    padding:50px;
+
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+/* ================= MAIN CARD ================= */
+
+.main-card{
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:45px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.08);
+
+}
+
+/* ================= TITLE ================= */
+
+.title{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.title h1{
+
+    color:#dc2626;
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.title p{
+
+    margin-top:15px;
+
+    color:#64748b;
+
+    font-size:20px;
+
+}
+
+/* ================= SECTION ================= */
+
+.section{
+
+    margin-top:45px;
+
+}
+
+.section h2{
+
+    color:#2563eb;
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+/* ================= BREATHING ================= */
+
+.breathing-area{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+
+#breathText{
+
+    margin-top:30px;
+    font-size:32px;
+    font-weight:700;
+    color:#2563eb;
+
+}
+
+#countdown{
+
+    margin-top:8px;
+    font-size:50px;
+    font-weight:700;
+    color:#0f172a;
+
+}
+
+/* ===========================
+   Grounding Exercise
+=========================== */
+
+.grounding-box{
+
+    background:#f8fbff;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    border:1px solid #dbeafe;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:12px;
+
+    background:#dbeafe;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+#progressBar{
+
+    width:20%;
+
+    height:100%;
+
+    background:#2563eb;
+
+    transition:.4s;
+
+}
+
+#stepNumber{
+
+    color:#64748b;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+#groundTitle{
+
+    color:#1e293b;
+
+    margin-bottom:20px;
+
+}
+
+#groundInput{
+
+    width:100%;
+
+    min-height:140px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border:1px solid #cbd5e1;
+
+    resize:none;
+
+    outline:none;
+
+    font-size:16px;
+
+}
+
+#groundInput:focus{
+
+    border-color:#2563eb;
+
+}
+
+.ground-btn{
+
+    margin-top:25px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.ground-btn:hover{
+
+    background:#1d4ed8;
+
+}
+/* ================= HELPLINES ================= */
+
+.helpline{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.help-card{
+
+    background:#eef5ff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    border-left:6px solid #2563eb;
+
+}
+
+.help-card h3{
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.help-card p{
+
+    color:#475569;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+/* ================= BUTTON ================= */
+
+.chat-btn{
+
+    display:inline-block;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:16px 35px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.chat-btn:hover{
+
+    background:#1d4ed8;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
+
+/* ================= QUOTE ================= */
+
+.quote{
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    color:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    font-size:22px;
+
+    text-align:center;
+
+    line-height:1.8;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.25);
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+body{
+
+    padding:20px;
+
+}
+
+.main-card{
+
+    padding:25px;
+
+}
+
+.title h1{
+
+    font-size:30px;
+
+}
+
+.section h2{
+
+    font-size:22px;
+
+}
+
+.circle{
+
+    width:130px;
+
+    height:130px;
+
+}
+
+}
+/* ============================
+   Floating Particles
+=============================*/
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    display:block;
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:rgba(37,99,235,.15);
+
+    animation:float 20s linear infinite;
+
+}
+
+.particles span:nth-child(1){
+left:5%;
+animation-duration:18s;
+}
+
+.particles span:nth-child(2){
+left:15%;
+animation-duration:26s;
+width:16px;
+height:16px;
+}
+
+.particles span:nth-child(3){
+left:30%;
+animation-duration:22s;
+}
+
+.particles span:nth-child(4){
+left:45%;
+animation-duration:17s;
+}
+
+.particles span:nth-child(5){
+left:55%;
+animation-duration:24s;
+}
+
+.particles span:nth-child(6){
+left:65%;
+animation-duration:19s;
+}
+
+.particles span:nth-child(7){
+left:75%;
+animation-duration:28s;
+}
+
+.particles span:nth-child(8){
+left:85%;
+animation-duration:20s;
+}
+
+.particles span:nth-child(9){
+left:92%;
+animation-duration:25s;
+}
+
+.particles span:nth-child(10){
+left:98%;
+animation-duration:16s;
+}
+
+@keyframes float{
+
+    from{
+
+        transform:translateY(110vh);
+
+        opacity:0;
+
+    }
+
+    15%{
+
+        opacity:1;
+
+    }
+
+    85%{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-20vh);
+
+        opacity:0;
+
+    }
+
+}
+.sound-controls{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+}
+
+.sound-controls select,
+.sound-controls button{
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    border:1px solid #dbeafe;
+
+    font-size:15px;
+
+}
+
+.sound-controls button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+.sound-controls button:hover{
+
+    background:#1d4ed8;
+
+}

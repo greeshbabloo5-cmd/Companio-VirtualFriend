@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Companio Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div>
+
+        <h2>Companio</h2>
+
+        <a href="{{ url_for('dashboard') }}">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+        <li>
+           <a href="{{ url_for('recommendations') }}">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+               <span>For You</span>
+            </a>
+        </li>
+
+    <li>
+    <a href="{{ url_for('daily_progress') }}">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Daily Progress</span>
+    </a>
+</li>
+        
+<li>
+    <a href="{{ url_for('emergency_support') }}">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Need Help?</span>
+    </a>
+</li>
+        
+
+        <a href="{{ url_for('profile') }}">
+            <i class="fa-solid fa-user"></i>
+            Profile
+        </a>
+
+    </div>
+    <li>
+    <a href="{{ url_for('settings') }}">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
+</li>
+
+    <a href="{{ url_for('logout') }}">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
+    
+
+</div>
+
+<div class="main-content">
+    <div class="container-fluid"></div>
+    
+
+<div class="topbar">
+
+<div>
+
+<h2>Hello {{ username }} 👋</h2>
+
+<p>Welcome back to your AI companion.</p>
+
+</div>
+
+<div class="profile-circle">
+
+{{ username[0] }}
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<h1>Companio AI Assistant</h1>
+
+<p>
+
+Your personal AI friend that remembers, understands and supports you every day.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="{{ url_for('continue_chat') }}" class="btn1">
+
+Continue Chat
+
+</a>
+
+<a href="{{ url_for('new_chat') }}" class="btn2">
+
+Start New Chat
+
+</a>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon blue">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+<h3>AI Memory</h3>
+
+<p>
+
+Companio remembers important things about you.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon orange">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+<h3>Profile</h3>
+
+<p>
+
+Manage your memories and personal information.
+
+</p>
+
+<a href="{{ url_for('profile') }}">
+
+Open →
+
+</a>
+
+</div>
+<div class="card">
+
+    <div class="icon red">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <h3>Emergency Support</h3>
+
+    <p>
+        Get immediate crisis resources, helpline numbers and quick calming techniques whenever you need urgent support.
+    </p>
+
+    <a href="{{ url_for('emergency_support') }}">
+        Open →
+    </a>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👤 My Profile</h1>
+
+<div class="card">
+
+<h2>{{ user.full_name }}</h2>
+
+<p><b>Email :</b> {{ user.email }}</p>
+
+<p><b>Current Mood :</b> {{ latest_mood }}</p>
+
+<p><b>Total Chats :</b> {{ total_messages }}</p>
+
+<p><b>Total Conversations :</b> {{ total_conversations }}</p>
+
+</div>
+
+<h2>🧠 Things Companio Knows</h2>
+
+<div class="card">
+
+{% if memories %}
+
+    {% for memory in memories %}
+
+        <p>
+
+            <b>{{ memory.memory_key.replace("_"," ").title() }}</b>
+
+            :
+
+            {{ memory.memory_value }}
+
+        </p>
+
+    {% endfor %}
+
+{% else %}
+
+<p>No memories stored yet.</p>
+
+{% endif %}
+
+</div>
+
+<br>
+
+<a href="{{ url_for('dashboard') }}">
+
+<button>
+
+Back to Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+</body>
+
+</html>

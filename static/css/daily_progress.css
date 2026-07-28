@@ -1,0 +1,360 @@
+/* ===============================
+   Google Font
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#f5f7fb;
+
+    color:#1e293b;
+
+}
+
+.container{
+
+    width:95%;
+    max-width:1400px;
+    margin:30px auto;
+
+}
+
+/* ===============================
+   Header
+================================ */
+
+.header{
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:40px;
+
+}
+
+.back-btn{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-size:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.header h1{
+
+    font-size:38px;
+
+    color:#0f172a;
+
+}
+
+.header p{
+
+    color:#64748b;
+
+    margin-top:5px;
+
+}
+
+/* ===============================
+   Statistics
+================================ */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    text-align:center;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card i{
+
+    font-size:45px;
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h3{
+
+    color:#64748b;
+
+    margin-bottom:10px;
+
+}
+
+.stat-card h2{
+
+    font-size:30px;
+
+    color:#0f172a;
+
+}
+
+/* ===============================
+   Charts
+================================ */
+
+.charts{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.chart-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.chart-card h2{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+
+}
+
+/* ===============================
+   Analysis
+================================ */
+
+.analysis{
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    color:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.analysis h2{
+
+    margin-bottom:20px;
+
+}
+
+.analysis p{
+
+    line-height:1.8;
+
+    font-size:17px;
+
+}
+
+/* ===============================
+   Achievements
+================================ */
+
+.achievements{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.achievements h2{
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+.achievements ul{
+
+    list-style:none;
+
+}
+
+.achievements li{
+
+    padding:15px 0;
+
+    font-size:17px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+/* ===============================
+   Recommendations
+================================ */
+
+.recommendations{
+
+    margin-bottom:40px;
+
+}
+
+.recommendations h2{
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+.recommend-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.recommend-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.recommend-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.recommend-card{
+
+    font-size:40px;
+
+}
+
+.recommend-card h3{
+
+    margin:15px 0;
+
+    color:#0f172a;
+
+}
+
+.recommend-card p{
+
+    color:#64748b;
+
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media(max-width:1000px){
+
+.stats{
+
+    grid-template-columns:1fr;
+
+}
+
+.charts{
+
+    grid-template-columns:1fr;
+
+}
+
+.recommend-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.header h1{
+
+    font-size:30px;
+
+}
+
+}

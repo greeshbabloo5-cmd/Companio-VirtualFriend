@@ -1,0 +1,17 @@
+Flask
+Flask-SQLAlchemy
+Flask-Cors
+pandas
+numpy
+scikit-learn
+nltk
+joblib
+mysql-connector-python
+SQLAlchemy
+matplotlib
+transformers
+torch
+sentence-transformers
+accelerate
+tokenizers
+safetensors

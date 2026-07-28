@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Companio | Settings</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="settings-container">
+
+    <!-- Sidebar -->
+
+    <div class="settings-sidebar">
+
+        <h2>⚙️ Settings</h2>
+
+        <ul>
+
+            <li class="active">👤 Account</li>
+
+            <li>🎨 Appearance</li>
+
+            <li>🤖 AI Preferences</li>
+
+            <li>🧠 AI Memory</li>
+
+            <li>🔔 Notifications</li>
+
+            <li>🔒 Privacy</li>
+
+            <li>📥 Export Data</li>
+
+            <li class="danger">🚨 Danger Zone</li>
+
+        </ul>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="settings-content">
+
+        <div class="settings-header">
+
+    <div>
+
+        <h1>⚙️ Settings</h1>
+
+        <p>Customize your Companio experience</p>
+
+    </div>
+
+    <div class="theme-toggle">
+
+        <span id="themeLabel">🌙 Dark</span>
+
+        <label class="switch">
+
+            <input type="checkbox" id="themeSwitch">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+        <!-- Account -->
+
+        <div class="card">
+
+            <h3>👤 Account</h3>
+
+            <label>Name</label>
+
+            <input type="text" placeholder="Your Name">
+
+            <label>Email</label>
+
+            <input type="email" placeholder="Your Email">
+
+            <button>Update Profile</button>
+
+        </div>
+
+
+
+
+
+        <!-- AI -->
+
+        <div class="card">
+
+            <h3>🤖 AI Response Style</h3>
+
+            <select>
+
+                <option>Friendly</option>
+
+                <option>Professional</option>
+
+                <option>Motivational</option>
+
+            </select>
+
+        </div>
+
+        <!-- Memory -->
+
+        <div class="card">
+
+            <h3>🧠 AI Memory</h3>
+
+            <label>
+
+                <input type="checkbox" checked>
+
+                Enable AI Memory
+
+            </label>
+
+            <button class="danger-btn">
+
+                Clear AI Memory
+
+            </button>
+
+        </div>
+
+        <!-- Notifications -->
+
+        <div class="card">
+
+            <h3>🔔 Notifications</h3>
+
+            <label>
+
+                <input type="checkbox" checked>
+
+                Daily Motivation
+
+            </label>
+
+            <label>
+
+                <input type="checkbox">
+
+                Mood Reminder
+
+            </label>
+
+        </div>
+
+        <!-- Privacy -->
+
+        <div class="card">
+
+            <h3>🔒 Privacy</h3>
+
+            <label>
+
+                <input type="checkbox" checked>
+
+                Save Chat History
+
+            </label>
+
+            <label>
+
+                <input type="checkbox" checked>
+
+                Save Mood History
+
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+
+</body>
+
+</html>
