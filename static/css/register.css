@@ -1,0 +1,99 @@
+/* =========================================================
+   COMPANIO - REGISTER PAGE STYLES
+   (Two Parent / Guardian Emergency Contact Fields & Validation)
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+    height: auto;
+    padding: 24px 15px;
+}
+
+.container {
+    width: min(440px, 94%);
+    max-height: 94vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 58, 237, 0.4) transparent;
+}
+
+.container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.4);
+    border-radius: 10px;
+}
+
+/* Emergency contact block */
+.emergency-contact-box {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.emergency-contact-box .input-label {
+    display: block;
+    color: #F5EEFF;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.15px;
+    text-align: left;
+}
+
+/* Icon inside input */
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-icon-wrapper .field-icon {
+    position: absolute;
+    left: 15px;
+    color: #7C3AED;
+    font-size: 15px;
+    pointer-events: none;
+    z-index: 2;
+    transition: color 0.2s ease;
+}
+
+.input-icon-wrapper input {
+    width: 100%;
+    padding: 13px 14px 13px 44px;
+    border: 1.5px solid rgba(233, 213, 255, 0.4);
+    outline: none;
+    border-radius: 10px;
+    font-size: 14.5px;
+    background: #ffffff;
+    color: #2E1065;
+    transition: all 0.25s ease;
+}
+
+.input-icon-wrapper input:focus {
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+}
+
+.input-icon-wrapper input.input-invalid {
+    border-color: #EF4444;
+    background: #FFF5F5;
+}
+
+.input-icon-wrapper input.input-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+}
+
+/* Inline error */
+.inline-error {
+    display: block;
+    color: #FCA5A5;
+    font-size: 12px;
+    margin-top: 5px;
+    min-height: 16px;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.2s ease;
+}

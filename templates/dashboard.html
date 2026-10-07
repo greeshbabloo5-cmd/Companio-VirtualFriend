@@ -1,192 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companio | Dashboard</title>
 
-<title>Companio Dashboard</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
 </head>
 
 <body>
 
-<div class="sidebar">
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+<aside class="sidebar">
 
-    <div>
+    <div class="sidebar-top">
 
-        <h2>Companio</h2>
+        <div class="sidebar-brand">
+            <img src="{{ url_for('static', filename='images/companio_logo_white.png') }}"
+                 alt="Companio Logo"
+                 class="brand-logo">
+            <h2>Companio</h2>
+        </div>
 
-        <a href="{{ url_for('dashboard') }}">
-            <i class="fa-solid fa-house"></i>
-            Dashboard
-        </a>
-        <li>
-           <a href="{{ url_for('recommendations') }}">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-               <span>For You</span>
+        <nav class="sidebar-nav">
+            <!-- Dashboard -->
+            <a href="{{ url_for('dashboard') }}" class="sidebar-link active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
             </a>
-        </li>
 
-    <li>
-    <a href="{{ url_for('daily_progress') }}">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Daily Progress</span>
-    </a>
-</li>
-        
-<li>
-    <a href="{{ url_for('emergency_support') }}">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <span>Need Help?</span>
-    </a>
-</li>
-        
+            <!-- For You -->
+            <a href="{{ url_for('recommendations') }}" class="sidebar-link">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>For You</span>
+            </a>
 
-        <a href="{{ url_for('profile') }}">
-            <i class="fa-solid fa-user"></i>
-            Profile
+            <!-- Daily Progress -->
+            <a href="{{ url_for('daily_progress') }}" class="sidebar-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Daily Progress</span>
+            </a>
+
+            <!-- Profile -->
+            <a href="{{ url_for('profile') }}" class="sidebar-link">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <!-- Emergency -->
+            <a href="{{ url_for('emergency_support') }}" class="sidebar-link emergency-nav-link">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Emergency</span>
+            </a>
+
+            <!-- Settings -->
+            <a href="{{ url_for('settings') }}" class="sidebar-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- Logout -->
+    <div class="sidebar-bottom">
+        <a href="{{ url_for('logout') }}" class="sidebar-link logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+<main class="main-content">
+
+    <!-- =====================================
+         TOP BAR
+    ====================================== -->
+    <header class="topbar">
+
+        <div class="welcome-section">
+            <p class="section-label">DAILY WELLNESS</p>
+            <h2>Hello {{ username }} 👋</h2>
+            <p class="welcome-subtitle">
+                {% if current_mood %}
+                    {% set cm = current_mood | lower %}
+                    {% if cm in ['happy', 'joy', 'love'] %}
+                        🌞 Keep shining!
+                    {% elif cm in ['sad', 'sadness'] %}
+                        💜 We're here for you.
+                    {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                        🌿 Enjoy the peaceful day.
+                    {% elif cm in ['tired'] %}
+                        ☕ Take things slowly today.
+                    {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                        🌸 One breath at a time.
+                    {% else %}
+                        ✨ Feeling {{ current_mood | capitalize }} today.
+                    {% endif %}
+                {% else %}
+                    Welcome back to your personal AI companion space.
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Profile Circle -->
+        <a href="{{ url_for('profile') }}" class="profile-link" title="View Profile">
+            <div class="profile-circle">
+                {{ username[0] | upper }}
+            </div>
         </a>
 
-    </div>
-    <li>
-    <a href="{{ url_for('settings') }}">
-        <i class="fa-solid fa-gear"></i>
-        <span>Settings</span>
-    </a>
-</li>
-
-    <a href="{{ url_for('logout') }}">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Logout
-    </a>
-    
-
-</div>
-
-<div class="main-content">
-    <div class="container-fluid"></div>
-    
-
-<div class="topbar">
-
-<div>
-
-<h2>Hello {{ username }} 👋</h2>
-
-<p>Welcome back to your AI companion.</p>
-
-</div>
-
-<div class="profile-circle">
-
-{{ username[0] }}
-
-</div>
-
-</div>
-
-<div class="hero-card">
-
-<h1>Companio AI Assistant</h1>
-
-<p>
-
-Your personal AI friend that remembers, understands and supports you every day.
-
-</p>
-
-<div class="hero-buttons">
-
-<a href="{{ url_for('continue_chat') }}" class="btn1">
-
-Continue Chat
-
-</a>
-
-<a href="{{ url_for('new_chat') }}" class="btn2">
-
-Start New Chat
-
-</a>
-
-</div>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="icon blue">
-
-<i class="fa-solid fa-brain"></i>
-
-</div>
-
-<h3>AI Memory</h3>
-
-<p>
-
-Companio remembers important things about you.
-
-</p>
-
-</div>
+    </header>
 
 
-<div class="card">
+    <!-- =====================================
+         HERO SECTION
+    ====================================== -->
+    <section class="hero-card">
 
-<div class="icon orange">
+        <div class="hero-sparkle">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
 
-<i class="fa-solid fa-user"></i>
+        <p class="hero-badge">
+            {% if current_mood %}
+                {% set cm = current_mood | lower %}
+                {% if cm in ['happy', 'joy', 'love'] %}
+                    TODAY'S MOOD: HAPPY 🌞
+                {% elif cm in ['sad', 'sadness'] %}
+                    TODAY'S MOOD: WE'RE HERE FOR YOU 💜
+                {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                    TODAY'S MOOD: CALM &amp; PEACEFUL 🌿
+                {% elif cm in ['tired'] %}
+                    TODAY'S MOOD: REST &amp; RECHARGE ☕
+                {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                    TODAY'S MOOD: GENTLE BREATHING 🌸
+                {% else %}
+                    TODAY'S MOOD: {{ current_mood | upper }}
+                {% endif %}
+            {% else %}
+                AI MENTAL WELLNESS COMPANION
+            {% endif %}
+        </p>
 
-</div>
+        <h1>
+            {% if current_mood %}
+                {% set cm = current_mood | lower %}
+                {% if cm in ['happy', 'joy', 'love'] %}
+                    🌞 Keep shining!
+                {% elif cm in ['sad', 'sadness'] %}
+                    💜 We're here for you.
+                {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                    🌿 Enjoy the peaceful day.
+                {% elif cm in ['tired'] %}
+                    ☕ Take things slowly today.
+                {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                    🌸 One breath at a time.
+                {% else %}
+                    Companio AI Assistant
+                {% endif %}
+            {% else %}
+                Companio AI Assistant
+            {% endif %}
+        </h1>
 
-<h3>Profile</h3>
+        <p class="hero-desc">
+            {% if current_mood %}
+                {% set cm = current_mood | lower %}
+                {% if cm in ['happy', 'joy', 'love'] %}
+                    Your positive energy brings lightness to the day! Keep that radiant glow going with mindful gratitude and uplifting activities.
+                {% elif cm in ['sad', 'sadness'] %}
+                    It's completely okay to feel down. You're never alone here — take a quiet moment, breathe gently, or talk to Companio whenever you're ready.
+                {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                    A steady mind brings profound peace. Savor this tranquility and let each peaceful breath nourish your day.
+                {% elif cm in ['tired'] %}
+                    Give yourself permission to pause and rest. Healing happens when we slow down and care for our body and soul.
+                {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                    Breathe in peace, exhale tension. Let thoughts come and go without judgment. We are right beside you, one step at a time.
+                {% else %}
+                    Your personal AI friend that remembers, understands, and supports you every day. Take a breath, reflect, and share whatever is on your mind.
+                {% endif %}
+            {% else %}
+                Your personal AI friend that remembers, understands, and supports you every day. Take a breath, reflect, and share whatever is on your mind.
+            {% endif %}
+        </p>
 
-<p>
+        <div class="hero-buttons">
 
-Manage your memories and personal information.
+            <!-- Continue Chat -->
+            <a href="{{ url_for('continue_chat') }}" class="btn1">
+                <i class="fa-solid fa-comments"></i>
+                <span>Continue Chat</span>
+            </a>
 
-</p>
+            <!-- New Chat -->
+            <a href="{{ url_for('new_chat') }}" class="btn2">
+                <i class="fa-solid fa-plus"></i>
+                <span>Start New Chat</span>
+            </a>
 
-<a href="{{ url_for('profile') }}">
+        </div>
 
-Open →
+    </section>
 
-</a>
 
-</div>
-<div class="card">
-
-    <div class="icon red">
-        <i class="fa-solid fa-triangle-exclamation"></i>
+    <!-- =====================================
+         SECTION TITLE
+    ====================================== -->
+    <div class="section-header-wrap">
+        <div>
+            <p class="section-label">EXPLORE COMPANIO</p>
+            <h2 class="section-heading-title">Wellness Services & Tools</h2>
+        </div>
     </div>
 
-    <h3>Emergency Support</h3>
 
-    <p>
-        Get immediate crisis resources, helpline numbers and quick calming techniques whenever you need urgent support.
-    </p>
+    <!-- =====================================
+         DASHBOARD CARDS
+    ====================================== -->
+    <section class="cards">
 
-    <a href="{{ url_for('emergency_support') }}">
-        Open →
-    </a>
+        <!-- FOR YOU -->
+        <div class="card">
+            <div class="icon pink">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3>For You</h3>
+            <p>
+                Discover personalized music, relaxing sounds, daily motivation, and wellness activities tailored to your mood.
+            </p>
+            <a href="{{ url_for('recommendations') }}" class="card-link">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
 
-</div>
-</div>
+        <!-- DAILY PROGRESS -->
+        <div class="card">
+            <div class="icon green">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Daily Progress</h3>
+            <p>
+                Track your emotional balance, view 7-day mood history graphs, and understand your emotional wellness journey.
+            </p>
+            <a href="{{ url_for('daily_progress') }}" class="card-link">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
 
-</div>
+        <!-- PROFILE -->
+        <div class="card">
+            <div class="icon orange">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <h3>Profile</h3>
+            <p>
+                Manage your account credentials, view session statistics, and review your historical conversation data.
+            </p>
+            <a href="{{ url_for('profile') }}" class="card-link">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- EMERGENCY SUPPORT -->
+        <div class="card emergency-card">
+            <div class="icon red">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>Emergency Support</h3>
+            <p>
+                Access guided box breathing, relaxing ambient audio, 5-4-3-2-1 sensory grounding, and immediate helpline contacts.
+            </p>
+            <a href="{{ url_for('emergency_support') }}" class="card-link">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </section>
+
+</main>
 
 </body>
+
 </html>

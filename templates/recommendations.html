@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companio | For You</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =====================================================
+         HEADER (STANDARDIZED WITH DAILY MOTIVATION)
+    ====================================================== -->
+    <header class="page-header">
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn" title="Back to Dashboard">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="header-content">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+            <div>
+                <h1>For You</h1>
+                <p>Personalized wellness recommendations powered by Companio AI.</p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         SECTION HEADING
+    ====================================================== -->
+    <div class="section-heading">
+        <p class="section-label">
+            {% if current_mood %}
+                RECOMMENDED FOR YOUR MOOD &bull; {{ current_mood | upper }}
+            {% else %}
+                CURATED WELLNESS TOOLS
+            {% endif %}
+        </p>
+        <h2>
+            {% if current_mood %}
+                {% set cm = current_mood | lower %}
+                {% if cm in ['happy', 'joy', 'love'] %}
+                    Uplifting Pathways to Celebrate &amp; Thrive
+                {% elif cm in ['sad', 'sadness'] %}
+                    Gentle Comfort &amp; Emotional Relief
+                {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                    Grounding Practices to Ease Tension &amp; Worry
+                {% elif cm in ['tired'] %}
+                    Restorative Spaces to Unwind &amp; Recharge
+                {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                    Mindful Harmony &amp; Deep Peace
+                {% else %}
+                    Tailored to Your Emotional State
+                {% endif %}
+            {% else %}
+                Tailored to Your Emotional State
+            {% endif %}
+        </h2>
+        <p>
+            {% if current_mood %}
+                {% set cm = current_mood | lower %}
+                {% if cm in ['happy', 'joy', 'love'] %}
+                    You are in high spirits! Channel your vibrant energy with celebration playlists, gratitude practices, and joyful reflection.
+                {% elif cm in ['sad', 'sadness'] %}
+                    Honor how you feel. Companio has handpicked gentle breathing, mindful journaling, and soothing spaces to comfort you.
+                {% elif cm in ['anxious', 'stressed', 'fear'] %}
+                    Take things one breath at a time. Explore grounding meditations, calming rain sounds, and sensory exercises to center your mind.
+                {% elif cm in ['tired'] %}
+                    Your body and mind are asking for rest. Reconnect with tranquil acoustic music, restorative stretching, and gentle stillness.
+                {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                    Savor this tranquil balance. Nurture your peaceful focus with acoustic serenity, mindfulness, and gentle nature sounds.
+                {% else %}
+                    Explore mindful activities, calming frequencies, uplifting thoughts, and soothing melodies.
+                {% endif %}
+            {% else %}
+                Explore mindful activities, calming frequencies, uplifting thoughts, and soothing melodies.
+            {% endif %}
+        </p>
+    </div>
+
+
+    <!-- =====================================================
+         RECOMMENDATION CARDS
+    ====================================================== -->
+    <div class="cards">
+
+        <!-- MUSIC -->
+        <div class="card">
+            <div class="icon music">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <h2>Music</h2>
+            <p>
+                Discover uplifting melodies and calm soundtracks selected to match your mood and help you restore balance.
+            </p>
+            <a href="{{ url_for('music_recommendations') }}" class="card-btn">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- RELAXING SOUNDS -->
+        <div class="card">
+            <div class="icon sound">
+                <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <h2>Relaxing Sounds</h2>
+            <p>
+                Calm your mind with peaceful sounds.
+            </p>
+            <a href="{{ url_for('relaxing_sounds') }}" class="card-btn">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- DAILY MOTIVATION -->
+        <div class="card">
+            <div class="icon quote">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+            <h2>Daily Motivation</h2>
+            <p>
+                Read inspiring perspectives, affirmations, and gentle compassionate reminders whenever you need a lift.
+            </p>
+            <a href="{{ url_for('daily_motivation') }}" class="card-btn">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- WELLNESS ACTIVITIES -->
+        <div class="card">
+            <div class="icon wellness">
+                <i class="fa-solid fa-spa"></i>
+            </div>
+            <h2>Wellness Activities</h2>
+            <p>
+                Practice guided box breathing, mini-meditations, 5-4-3-2-1 sensory grounding, and mindful journaling exercises.
+            </p>
+            <a href="{{ url_for('wellness_activities') }}" class="card-btn">
+                <span>Open</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GENTLE STRETCHING SECTION
+    ====================================================== -->
+    <section class="stretching-section" id="gentleStretching">
+
+        <div class="section-heading">
+            <p class="section-label">MINDFUL MOVEMENT</p>
+            <h2>Gentle Stretching</h2>
+            <p>Take a few moments to release body tension, loosen tight muscles, and restore your calm.</p>
+        </div>
+
+        <div class="stretching-grid">
+
+            <!-- NECK STRETCH -->
+            <div class="stretch-card"
+                 data-stretch-id="neck"
+                 data-title="Neck Stretch"
+                 data-duration="30"
+                 data-icon="fa-solid fa-child-reaching"
+                 data-desc="Slowly tilt your head from side to side to release neck and shoulder stiffness.">
+                <div class="stretch-card-icon">
+                    <i class="fa-solid fa-child-reaching"></i>
+                </div>
+                <div class="stretch-card-body">
+                    <div class="stretch-card-header">
+                        <h3>Neck Stretch</h3>
+                        <span class="stretch-duration"><i class="fa-regular fa-clock"></i> 30 sec</span>
+                    </div>
+                    <p>Slowly tilt your head from side to side to release neck and shoulder stiffness.</p>
+                </div>
+                <button class="stretch-open-btn" type="button" aria-label="Start Neck Stretch">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Start Stretch</span>
+                </button>
+            </div>
+
+            <!-- SHOULDER ROLL -->
+            <div class="stretch-card"
+                 data-stretch-id="shoulder"
+                 data-title="Shoulder Roll"
+                 data-duration="45"
+                 data-icon="fa-solid fa-arrows-rotate"
+                 data-desc="Smoothly roll your shoulders upwards, backwards, and down in a fluid circular motion.">
+                <div class="stretch-card-icon">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+                <div class="stretch-card-body">
+                    <div class="stretch-card-header">
+                        <h3>Shoulder Roll</h3>
+                        <span class="stretch-duration"><i class="fa-regular fa-clock"></i> 45 sec</span>
+                    </div>
+                    <p>Smoothly roll your shoulders upwards, backwards, and down in a fluid circular motion.</p>
+                </div>
+                <button class="stretch-open-btn" type="button" aria-label="Start Shoulder Roll">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Start Stretch</span>
+                </button>
+            </div>
+
+            <!-- CAT-COW STRETCH -->
+            <div class="stretch-card"
+                 data-stretch-id="cat-cow"
+                 data-title="Cat–Cow Stretch"
+                 data-duration="60"
+                 data-icon="fa-solid fa-cat"
+                 data-desc="Alternate gently arching and rounding your back to mobilize your spine and open your chest.">
+                <div class="stretch-card-icon">
+                    <i class="fa-solid fa-cat"></i>
+                </div>
+                <div class="stretch-card-body">
+                    <div class="stretch-card-header">
+                        <h3>Cat–Cow Stretch</h3>
+                        <span class="stretch-duration"><i class="fa-regular fa-clock"></i> 60 sec</span>
+                    </div>
+                    <p>Alternate gently arching and rounding your back to mobilize your spine and open your chest.</p>
+                </div>
+                <button class="stretch-open-btn" type="button" aria-label="Start Cat–Cow Stretch">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Start Stretch</span>
+                </button>
+            </div>
+
+            <!-- CHILD'S POSE -->
+            <div class="stretch-card"
+                 data-stretch-id="childs-pose"
+                 data-title="Child's Pose"
+                 data-duration="90"
+                 data-icon="fa-solid fa-person-praying"
+                 data-desc="Rest your hips back toward your heels and extend your arms forward to relax completely.">
+                <div class="stretch-card-icon">
+                    <i class="fa-solid fa-person-praying"></i>
+                </div>
+                <div class="stretch-card-body">
+                    <div class="stretch-card-header">
+                        <h3>Child's Pose</h3>
+                        <span class="stretch-duration"><i class="fa-regular fa-clock"></i> 90 sec</span>
+                    </div>
+                    <p>Rest your hips back toward your heels and extend your arms forward to relax completely.</p>
+                </div>
+                <button class="stretch-open-btn" type="button" aria-label="Start Child's Pose">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Start Stretch</span>
+                </button>
+            </div>
+
+            <!-- FORWARD FOLD -->
+            <div class="stretch-card"
+                 data-stretch-id="forward-fold"
+                 data-title="Forward Fold"
+                 data-duration="45"
+                 data-icon="fa-solid fa-person-walking"
+                 data-desc="Hinge gently at the hips, let your head hang loose, and allow gravity to lengthen your hamstrings and back.">
+                <div class="stretch-card-icon">
+                    <i class="fa-solid fa-person-walking"></i>
+                </div>
+                <div class="stretch-card-body">
+                    <div class="stretch-card-header">
+                        <h3>Forward Fold</h3>
+                        <span class="stretch-duration"><i class="fa-regular fa-clock"></i> 45 sec</span>
+                    </div>
+                    <p>Hinge gently at the hips, let your head hang loose, and allow gravity to lengthen your hamstrings and back.</p>
+                </div>
+                <button class="stretch-open-btn" type="button" aria-label="Start Forward Fold">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Start Stretch</span>
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FEEDBACK / MOOD SECTION
+    ====================================================== -->
+    <section class="feedback-card">
+
+        <div class="feedback-icon">
+            <i class="fa-solid fa-face-smile"></i>
+        </div>
+
+        <div class="feedback-text">
+            <h2>How are you feeling right now?</h2>
+            <p>
+                Share your current mood with Companio so future recommendations, music, and AI responses become even more personal.
+            </p>
+        </div>
+
+        <button class="feedback-btn" id="feedbackButton">
+            <span>Check In Mood</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     MOOD MODAL
+====================================================== -->
+<div class="mood-modal" id="moodModal">
+
+    <div class="mood-modal-overlay" id="moodModalOverlay"></div>
+
+    <div class="mood-modal-box">
+
+        <!-- CLOSE -->
+        <button class="mood-close" id="moodClose" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- HEADER -->
+        <div class="mood-modal-header">
+
+            <div class="mood-modal-icon">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <h2>How are you feeling?</h2>
+            <p>Choose the mood that feels closest to you right now.</p>
+
+        </div>
+
+        <!-- MOOD OPTIONS -->
+        <div class="mood-options">
+
+            <button class="mood-option" data-mood="happy">
+                <span class="mood-emoji">😊</span>
+                <strong>Happy</strong>
+            </button>
+
+            <button class="mood-option" data-mood="calm">
+                <span class="mood-emoji">😌</span>
+                <strong>Calm</strong>
+            </button>
+
+            <button class="mood-option" data-mood="sad">
+                <span class="mood-emoji">😔</span>
+                <strong>Sad</strong>
+            </button>
+
+            <button class="mood-option" data-mood="anxious">
+                <span class="mood-emoji">🌸</span>
+                <strong>Anxious</strong>
+            </button>
+
+            <button class="mood-option" data-mood="stressed">
+                <span class="mood-emoji">😰</span>
+                <strong>Stressed</strong>
+            </button>
+
+            <button class="mood-option" data-mood="tired">
+                <span class="mood-emoji">😴</span>
+                <strong>Tired</strong>
+            </button>
+
+            <button class="mood-option" data-mood="energetic">
+                <span class="mood-emoji">⚡</span>
+                <strong>Energetic</strong>
+            </button>
+
+        </div>
+
+        <!-- NOTE -->
+        <div class="mood-note-section">
+
+            <label for="moodNote">
+                Want to add something?
+                <span>Optional</span>
+            </label>
+
+            <textarea
+                id="moodNote"
+                maxlength="1000"
+                placeholder="Tell Companio a little about how you're feeling..."
+            ></textarea>
+
+            <div class="character-count">
+                <span id="characterCount">0</span> / 1000
+            </div>
+
+        </div>
+
+        <!-- SAVE -->
+        <button class="save-mood-btn" id="saveMoodButton" disabled>
+            <span>Save My Mood</span>
+            <i class="fa-solid fa-heart"></i>
+        </button>
+
+        <!-- STATUS -->
+        <p class="mood-status" id="moodStatus"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GENTLE STRETCHING TIMER MODAL
+====================================================== -->
+<div class="stretch-modal" id="stretchTimerModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="timerActivityTitle">
+
+    <div class="stretch-modal-overlay" id="stretchModalOverlay"></div>
+
+    <div class="stretch-modal-box">
+
+        <!-- CLOSE BUTTON -->
+        <button class="stretch-modal-close" id="timerCloseBtn" type="button" aria-label="Close stretch timer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- MODAL HEADER / ICON & TITLE -->
+        <div class="stretch-modal-header">
+            <div class="timer-icon-badge" id="timerIconBadge">
+                <i id="timerIcon" class="fa-solid fa-child-reaching"></i>
+            </div>
+            <h2 id="timerActivityTitle">Neck Stretch</h2>
+            <p id="timerActivityDesc">Slowly tilt your head from side to side to release neck and shoulder stiffness.</p>
+        </div>
+
+        <!-- CIRCULAR TIMER DISPLAY -->
+        <div class="timer-circle-wrapper">
+            <svg class="timer-svg" viewBox="0 0 220 220" width="220" height="220">
+                <defs>
+                    <linearGradient id="timerPurpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#7c3aed" />
+                        <stop offset="100%" stop-color="#c084fc" />
+                    </linearGradient>
+                </defs>
+                <!-- Background Ring -->
+                <circle class="timer-circle-bg"
+                        cx="110" cy="110" r="92" />
+                <!-- Animated Progress Ring -->
+                <circle id="timerProgressRing"
+                        class="timer-circle-fg"
+                        cx="110" cy="110" r="92"
+                        transform="rotate(-90 110 110)" />
+            </svg>
+
+            <!-- Text inside circle -->
+            <div class="timer-circle-inner">
+                <div class="timer-digits" id="timerRemainingTime">00:30</div>
+                <div class="timer-status-label" id="timerStatusLabel">Ready to begin</div>
+            </div>
+        </div>
+
+        <!-- COMPLETION MESSAGE -->
+        <div class="stretch-completion-message" id="stretchCompletionMessage" style="display: none;">
+            <div class="completion-badge">
+                <span>✨ Great job! Stretch completed.</span>
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="timer-controls">
+            <!-- START -->
+            <button class="timer-btn timer-btn-start" id="timerStartBtn" type="button">
+                <i class="fa-solid fa-play" id="timerStartIcon"></i>
+                <span id="timerStartBtnText">Start</span>
+            </button>
+
+            <!-- PAUSE -->
+            <button class="timer-btn timer-btn-pause" id="timerPauseBtn" type="button" disabled>
+                <i class="fa-solid fa-pause"></i>
+                <span>Pause</span>
+            </button>
+
+            <!-- RESET -->
+            <button class="timer-btn timer-btn-reset" id="timerResetBtn" type="button">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>Reset</span>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     RECOMMENDATIONS & STRETCH TIMER JAVASCRIPT
+====================================================== -->
+<script src="{{ url_for('static', filename='js/recommendations.js') }}"></script>
+
+<!-- =====================================================
+     MOOD JAVASCRIPT
+====================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const feedbackButton = document.getElementById("feedbackButton");
+    const moodModal = document.getElementById("moodModal");
+    const moodModalOverlay = document.getElementById("moodModalOverlay");
+    const moodClose = document.getElementById("moodClose");
+    const moodOptions = document.querySelectorAll(".mood-option");
+    const saveMoodButton = document.getElementById("saveMoodButton");
+    const moodNote = document.getElementById("moodNote");
+    const characterCount = document.getElementById("characterCount");
+    const moodStatus = document.getElementById("moodStatus");
+
+    let selectedMood = null;
+
+    /* OPEN MODAL */
+    feedbackButton.addEventListener("click", function () {
+        moodModal.classList.add("show");
+        document.body.classList.add("modal-open");
+    });
+
+    /* CLOSE MODAL */
+    function closeModal() {
+        moodModal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+    }
+
+    moodClose.addEventListener("click", closeModal);
+    moodModalOverlay.addEventListener("click", closeModal);
+
+    /* MOOD SELECTION */
+    moodOptions.forEach(function (button) {
+        button.addEventListener("click", function () {
+            moodOptions.forEach(function (item) {
+                item.classList.remove("selected");
+            });
+            button.classList.add("selected");
+            selectedMood = button.dataset.mood;
+            saveMoodButton.disabled = false;
+            moodStatus.textContent = "";
+        });
+    });
+
+    /* CHARACTER COUNT */
+    moodNote.addEventListener("input", function () {
+        characterCount.textContent = moodNote.value.length;
+    });
+
+    /* SAVE MOOD */
+    saveMoodButton.addEventListener("click", async function () {
+        if (!selectedMood) return;
+
+        saveMoodButton.disabled = true;
+        saveMoodButton.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i> Saving...
+        `;
+        moodStatus.textContent = "";
+
+        try {
+            const response = await fetch("{{ url_for('save_mood') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    mood: selectedMood,
+                    note: moodNote.value.trim()
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                moodStatus.textContent = result.message;
+                moodStatus.className = "mood-status success";
+                saveMoodButton.innerHTML = `
+                    Saved <i class="fa-solid fa-check"></i>
+                `;
+                setTimeout(function () {
+                    closeModal();
+                    resetMoodForm();
+                    window.location.reload();
+                }, 700);
+            } else {
+                throw new Error(result.message || "Unable to save mood.");
+            }
+        } catch (error) {
+            console.error("Mood save error:", error);
+            moodStatus.textContent = error.message || "Something went wrong.";
+            moodStatus.className = "mood-status error";
+            saveMoodButton.disabled = false;
+            saveMoodButton.innerHTML = `
+                Try Again <i class="fa-solid fa-rotate-right"></i>
+            `;
+        }
+    });
+
+    /* RESET */
+    function resetMoodForm() {
+        selectedMood = null;
+        moodOptions.forEach(function (item) {
+            item.classList.remove("selected");
+        });
+        moodNote.value = "";
+        characterCount.textContent = "0";
+        moodStatus.textContent = "";
+        moodStatus.className = "mood-status";
+        saveMoodButton.disabled = true;
+        saveMoodButton.innerHTML = `
+            Save My Mood <i class="fa-solid fa-heart"></i>
+        `;
+    }
+
+    /* ESCAPE KEY */
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && moodModal.classList.contains("show")) {
+            closeModal();
+        }
+    });
+
+});
+</script>
+
+</body>
+
+</html>

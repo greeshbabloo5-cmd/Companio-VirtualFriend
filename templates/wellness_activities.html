@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Companio | Wellness Activities</title>
+
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/wellness_activities.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/global.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="wellness-container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <a href="{{ url_for('recommendations') }}"
+           class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </a>
+
+
+        <div class="header-content">
+
+            <div class="header-icon">
+
+                <i class="fa-solid fa-spa"></i>
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Wellness Activities
+                </h1>
+
+                <p>
+                    Simple activities to help you relax, refocus and care for yourself.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <section class="intro-card">
+
+        <div class="intro-icon">
+
+            <i class="fa-solid fa-heart"></i>
+
+        </div>
+
+
+        <div>
+
+            <h2>
+                Take a moment for yourself 🌿
+            </h2>
+
+            <p>
+                Choose an activity that feels right for you.
+                There is no need to rush.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACTIVITY CARDS
+    ====================================================== -->
+
+    <section class="activities-section">
+
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                WELLNESS FOR YOU
+            </p>
+
+            <h2>
+                What would you like to do?
+            </h2>
+
+            <p>
+                Pick an activity and spend a few peaceful minutes with yourself.
+            </p>
+
+        </div>
+
+
+        <div class="activity-grid">
+
+
+            <!-- BREATHING -->
+
+            <button class="activity-card"
+                    data-activity="breathing">
+
+                <div class="activity-icon breathing">
+
+                    <i class="fa-solid fa-wind"></i>
+
+                </div>
+
+                <h3>
+                    Breathing Exercise
+                </h3>
+
+                <p>
+                    Slow your breathing and bring your attention back to the present.
+                </p>
+
+                <span class="activity-time">
+                    <i class="fa-regular fa-clock"></i>
+                    2–5 min
+                </span>
+
+            </button>
+
+
+
+            <!-- MEDITATION -->
+
+            <button class="activity-card"
+                    data-activity="meditation">
+
+                <div class="activity-icon meditation">
+
+                    <i class="fa-solid fa-om"></i>
+
+                </div>
+
+                <h3>
+                    Mini Meditation
+                </h3>
+
+                <p>
+                    Take a quiet moment to settle your thoughts and relax.
+                </p>
+
+                <span class="activity-time">
+                    <i class="fa-regular fa-clock"></i>
+                    3 min
+                </span>
+
+            </button>
+
+
+
+            <!-- GROUNDING -->
+
+            <button class="activity-card"
+                    data-activity="grounding">
+
+                <div class="activity-icon grounding">
+
+                    <i class="fa-solid fa-earth-americas"></i>
+
+                </div>
+
+                <h3>
+                    5-4-3-2-1 Grounding
+                </h3>
+
+                <p>
+                    Use your senses to reconnect with the present moment.
+                </p>
+
+                <span class="activity-time">
+                    <i class="fa-regular fa-clock"></i>
+                    5 min
+                </span>
+
+            </button>
+
+
+
+            <!-- JOURNALING -->
+
+            <button class="activity-card"
+                    data-activity="journaling">
+
+                <div class="activity-icon journaling">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <h3>
+                    Gentle Journaling
+                </h3>
+
+                <p>
+                    Put your thoughts into words without worrying about perfection.
+                </p>
+
+                <span class="activity-time">
+                    <i class="fa-regular fa-clock"></i>
+                    5–10 min
+                </span>
+
+            </button>
+
+
+            <!-- RELAXATION -->
+
+            <button class="activity-card"
+                    data-activity="relaxation">
+
+                <div class="activity-icon relaxation">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </div>
+
+                <h3>
+                    Relaxation Moment
+                </h3>
+
+                <p>
+                    Slow down and create a peaceful little break in your day.
+                </p>
+
+                <span class="activity-time">
+                    <i class="fa-regular fa-clock"></i>
+                    5 min
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACTIVITY WORKSPACE
+    ====================================================== -->
+
+    <section class="activity-workspace"
+             id="activityWorkspace">
+
+
+        <div class="workspace-top">
+
+            <div>
+
+                <p class="workspace-label">
+                    YOUR ACTIVITY
+                </p>
+
+                <h2 id="workspaceTitle">
+                    Choose an activity above
+                </h2>
+
+            </div>
+
+
+            <button class="close-workspace"
+                    id="closeWorkspace"
+                    aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- Dynamic activity content -->
+
+        <div id="activityContent">
+
+            <div class="workspace-empty">
+
+                <div class="empty-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    Your peaceful space is ready
+                </h3>
+
+                <p>
+                    Select one of the activities above to begin.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DAILY REMINDER
+    ====================================================== -->
+
+    <section class="wellness-reminder">
+
+        <div class="reminder-icon">
+
+            <i class="fa-solid fa-heart"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Remember
+            </h3>
+
+            <p>
+                You don't have to do everything at once.
+                Taking a small pause is already a form of self-care.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =====================================================
+     BREATHING COMPLETION GLASS MODAL
+====================================================== -->
+<div class="breathing-modal" id="breathingCompleteModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="breathingDoneTitle">
+
+    <div class="breathing-modal-overlay" id="breathingModalOverlay"></div>
+
+    <div class="breathing-modal-box">
+
+        <div class="breathing-modal-icon">
+            🌸
+        </div>
+
+        <h2 id="breathingDoneTitle">Well Done!</h2>
+
+        <p>You completed your breathing session.</p>
+
+        <button class="breathing-modal-btn" id="breathingDoneBtn" type="button">
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='js/wellness_activities.js') }}"></script>
+
+
+</body>
+
+</html>

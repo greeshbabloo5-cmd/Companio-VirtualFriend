@@ -1,0 +1,526 @@
+/* =========================================
+   COMPANIO - DAILY MOTIVATION
+   (PURPLE WELLNESS DESIGN SYSTEM)
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.08),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(167, 139, 250, 0.08),
+            transparent 35%
+        ),
+        #FAF7FF;
+    color: #2E1065;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   CONTAINER
+   ========================================= */
+
+.motivation-container {
+    width: min(1050px, 92%);
+    margin: 0 auto;
+    padding: 35px 0 60px;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 38px;
+}
+
+.back-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #6B7280;
+    background: white;
+    border: 1px solid #E9D5FF;
+    border-radius: 13px;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.04);
+}
+
+.back-btn:hover {
+    color: #7C3AED;
+    transform: translateX(-3px);
+    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.15);
+    border-color: #A78BFA;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+    color: white;
+    border-radius: 17px;
+    font-size: 22px;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);
+    flex-shrink: 0;
+}
+
+.header-content h1 {
+    font-size: 27px;
+    font-weight: 700;
+    color: #2E1065;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+}
+
+.header-content p {
+    color: #6B7280;
+    font-size: 13px;
+}
+
+/* =========================================
+   MOTIVATION CARD
+   ========================================= */
+
+.motivation-card {
+    position: relative;
+    text-align: center;
+    padding: 55px 70px 45px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #FAF5FF, #F3E8FF);
+    border: 1px solid #E9D5FF;
+    box-shadow: 0 20px 50px rgba(109, 40, 217, 0.08);
+    margin-bottom: 45px;
+    overflow: hidden;
+}
+
+.motivation-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.06);
+    top: -80px;
+    left: -70px;
+}
+
+.motivation-card::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: rgba(167, 139, 250, 0.05);
+    bottom: -90px;
+    right: -60px;
+}
+
+.quote-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #7C3AED;
+    border-radius: 50%;
+    font-size: 17px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+}
+
+.quote-label {
+    color: #7C3AED;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-bottom: 17px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+#motivationText {
+    max-width: 760px;
+    margin: 0 auto;
+    color: #2E1065;
+    font-size: 27px;
+    line-height: 1.55;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+}
+
+.motivation-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 24px 0 28px;
+    color: #6B7280;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.motivation-author .line {
+    width: 35px;
+    height: 1px;
+    background: #E9D5FF;
+}
+
+/* =========================================
+   NEW MOTIVATION BUTTON
+   ========================================= */
+
+.new-motivation-btn {
+    position: relative;
+    z-index: 1;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 9px 22px rgba(124, 58, 237, 0.22);
+    transition: 0.25s ease;
+}
+
+.new-motivation-btn i {
+    margin-right: 7px;
+}
+
+.new-motivation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(124, 58, 237, 0.32);
+    background: linear-gradient(135deg, #6D28D9, #7C3AED);
+}
+
+.new-motivation-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   SECONDARY ACTIONS
+   ========================================= */
+
+.motivation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.action-btn {
+    border: 1px solid #E9D5FF;
+    background: rgba(255, 255, 255, 0.75);
+    color: #6B7280;
+    padding: 9px 15px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.action-btn i {
+    margin-right: 5px;
+}
+
+.action-btn:hover {
+    background: white;
+    color: #7C3AED;
+    border-color: #A78BFA;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+}
+
+.action-message {
+    min-height: 17px;
+    margin-top: 10px;
+    color: #7C3AED;
+    font-size: 11px;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   SECTION HEADINGS
+   ========================================= */
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-label {
+    color: #7C3AED;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: #2E1065;
+    margin-bottom: 5px;
+}
+
+.section-heading > p:last-child {
+    color: #6B7280;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   CATEGORY SECTION
+   ========================================= */
+
+.category-section {
+    margin-bottom: 42px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 105px;
+    border: 1px solid #E9D5FF;
+    background: white;
+    border-radius: 17px;
+    color: #6B7280;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.03);
+}
+
+.category-btn span {
+    font-size: 26px;
+}
+
+.category-btn strong {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.category-btn:hover {
+    transform: translateY(-3px);
+    border-color: #A78BFA;
+    box-shadow: 0 9px 22px rgba(124, 58, 237, 0.1);
+}
+
+.category-btn.active {
+    background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+}
+
+/* =========================================
+   MOOD SECTION
+   ========================================= */
+
+.mood-section {
+    margin-bottom: 42px;
+}
+
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.mood-btn {
+    border: 1px solid #E9D5FF;
+    background: white;
+    border-radius: 16px;
+    padding: 15px 8px;
+    color: #6B7280;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.03);
+}
+
+.mood-btn span {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.mood-btn strong {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.mood-btn:hover {
+    transform: translateY(-3px);
+    border-color: #A78BFA;
+    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.1);
+}
+
+.mood-btn.active {
+    background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+}
+
+/* =========================================
+   REMINDER
+   ========================================= */
+
+.reminder-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 23px;
+    border-radius: 19px;
+    background: linear-gradient(135deg, #FAF5FF, #F3E8FF);
+    border: 1px solid #E9D5FF;
+    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.04);
+}
+
+.reminder-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #7C3AED;
+    border-radius: 13px;
+    font-size: 18px;
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.12);
+}
+
+.reminder-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2E1065;
+    margin-bottom: 4px;
+}
+
+.reminder-card p {
+    color: #6B7280;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 850px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mood-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .motivation-container {
+        width: 94%;
+        padding-top: 22px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .header-content h1 {
+        font-size: 22px;
+    }
+
+    .header-content p {
+        font-size: 11px;
+    }
+
+    .header-icon {
+        width: 47px;
+        height: 47px;
+        border-radius: 14px;
+    }
+
+    .motivation-card {
+        padding: 40px 20px 32px;
+        border-radius: 24px;
+    }
+
+    #motivationText {
+        font-size: 21px;
+        line-height: 1.5;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mood-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reminder-card {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 400px) {
+    #motivationText {
+        font-size: 19px;
+    }
+
+    .category-btn {
+        min-height: 95px;
+    }
+}

@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
 
-    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companio | My Profile</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/profile.css') }}">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
 </head>
 
@@ -15,61 +29,153 @@
 
 <div class="container">
 
-<h1>👤 My Profile</h1>
+    <!-- =====================================================
+         HEADER (STANDARDIZED WITH DAILY MOTIVATION)
+    ====================================================== -->
+    <header class="page-header">
 
-<div class="card">
+        <a href="{{ url_for('dashboard') }}" class="back-btn" title="Back to Dashboard">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
 
-<h2>{{ user.full_name }}</h2>
+        <div class="header-content">
 
-<p><b>Email :</b> {{ user.email }}</p>
+            <div class="header-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
 
-<p><b>Current Mood :</b> {{ latest_mood }}</p>
+            <div>
+                <h1>My Profile</h1>
+                <p>Manage your account and view emotional statistics.</p>
+            </div>
 
-<p><b>Total Chats :</b> {{ total_messages }}</p>
+        </div>
 
-<p><b>Total Conversations :</b> {{ total_conversations }}</p>
+    </header>
 
-</div>
 
-<h2>🧠 Things Companio Knows</h2>
+    <!-- =====================================================
+         PROFILE HERO CARD
+    ====================================================== -->
+    <section class="profile-hero-card">
 
-<div class="card">
+        <div class="profile-avatar-large">
+            {{ user.full_name[0] | upper if user and user.full_name else 'U' }}
+        </div>
 
-{% if memories %}
+        <div class="profile-details">
 
-    {% for memory in memories %}
+            <span class="profile-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                Companio Member
+            </span>
 
-        <p>
+            <h2>{{ user.full_name }}</h2>
+            <p class="profile-email">
+                <i class="fa-regular fa-envelope"></i>
+                {{ user.email }}
+            </p>
 
-            <b>{{ memory.memory_key.replace("_"," ").title() }}</b>
+            <div class="profile-actions">
 
-            :
+                <a href="{{ url_for('continue_chat') }}" class="primary-btn">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Chat with Companio</span>
+                </a>
 
-            {{ memory.memory_value }}
+                <a href="{{ url_for('settings') }}" class="secondary-btn">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
 
-        </p>
+            </div>
 
-    {% endfor %}
+        </div>
 
-{% else %}
+    </section>
 
-<p>No memories stored yet.</p>
 
-{% endif %}
+    <!-- =====================================================
+         STATISTICS GRID
+    ====================================================== -->
+    <div class="stats-section">
 
-</div>
+        <div class="section-heading">
+            <p class="section-label">ACTIVITY OVERVIEW</p>
+            <h2>Your Wellness Statistics</h2>
+        </div>
 
-<br>
+        <div class="stats">
 
-<a href="{{ url_for('dashboard') }}">
+            <!-- CURRENT MOOD -->
+            <div class="stat-card">
+                <div class="stat-icon pink">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                <h3>Current Mood</h3>
+                <h2>
+                    {% if current_mood %}
+                        {% set cm = current_mood | lower %}
+                        {% if cm in ['happy', 'joy', 'love'] %}
+                            😊 Happy
+                        {% elif cm in ['calm', 'relaxed', 'peaceful', 'neutral'] %}
+                            😌 Calm
+                        {% elif cm in ['sad', 'sadness'] %}
+                            😔 Sad
+                        {% elif cm in ['tired'] %}
+                            ☕ Tired
+                        {% elif cm in ['anxious'] %}
+                            🌸 Anxious
+                        {% elif cm in ['stressed', 'fear'] %}
+                            😣 Stressed
+                        {% elif cm in ['angry', 'anger'] %}
+                            😠 Angry
+                        {% elif cm in ['energetic', 'excited', 'surprise', 'surprised'] %}
+                            🤩 Energetic
+                        {% else %}
+                            😊 {{ current_mood | capitalize }}
+                        {% endif %}
+                    {% else %}
+                        🌿 No mood yet
+                    {% endif %}
+                </h2>
+                <p>Latest recorded emotional state</p>
+            </div>
 
-<button>
+            <!-- TOTAL CONVERSATIONS -->
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-message"></i>
+                </div>
+                <h3>Total Conversations</h3>
+                <h2>{{ total_conversations }}</h2>
+                <p>Saved chat sessions with Companio</p>
+            </div>
 
-Back to Dashboard
+            <!-- TOTAL MESSAGES -->
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h3>Total Messages</h3>
+                <h2>{{ total_messages }}</h2>
+                <p>Messages exchanged together</p>
+            </div>
 
-</button>
+        </div>
 
-</a>
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER BACK BUTTON
+    ====================================================== -->
+    <div class="profile-footer">
+        <a href="{{ url_for('dashboard') }}" class="back-dashboard-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Dashboard</span>
+        </a>
+    </div>
 
 </div>
 
