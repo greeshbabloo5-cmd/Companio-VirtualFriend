@@ -1,0 +1,7 @@
+# Environment & Secrets
+.env
+.vapid_keys.json
+.vapid*
+__pycache__/
+*.pyc
+venv/

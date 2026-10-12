@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Companio | Daily Motivation</title>
+
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- Page CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/motivation.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/global.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="motivation-container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <a href="{{ url_for('recommendations') }}"
+           class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </a>
+
+
+        <div class="header-content">
+
+            <div class="header-icon">
+
+                <i class="fa-solid fa-quote-left"></i>
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Daily Motivation
+                </h1>
+
+                <p>
+                    A little reminder that you are doing better than you think.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN MOTIVATION CARD
+    ====================================================== -->
+
+    <section class="motivation-card">
+
+
+        <div class="quote-icon">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+        </div>
+
+
+        <p class="quote-label">
+            YOUR COMPANIO THOUGHT
+        </p>
+
+
+        <h2 id="motivationText">
+            You don't have to have everything figured out today.
+            Just take one small step at a time.
+        </h2>
+
+
+        <div class="motivation-author">
+
+            <span class="line"></span>
+
+            <span>
+                Companio
+            </span>
+
+            <span class="line"></span>
+
+        </div>
+
+
+        <!-- Main Action -->
+
+        <button class="new-motivation-btn"
+                id="newMotivationBtn">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            New Motivation
+
+        </button>
+
+
+        <!-- Secondary Actions -->
+
+        <div class="motivation-actions">
+
+            <button class="action-btn"
+                    id="copyBtn">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+
+            <button class="action-btn"
+                    id="shareBtn">
+
+                <i class="fa-solid fa-share-nodes"></i>
+
+                Share
+
+            </button>
+
+        </div>
+
+
+        <p class="action-message"
+           id="actionMessage"></p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CATEGORY SECTION
+    ====================================================== -->
+
+    <section class="category-section">
+
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                FIND YOUR ENERGY
+            </p>
+
+            <h2>
+                What do you need today?
+            </h2>
+
+            <p>
+                Choose a category to receive a thought that matches
+                what you need right now.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <button class="category-btn active"
+                    data-category="all">
+
+                <span>✨</span>
+
+                <strong>
+                    All
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="confidence">
+
+                <span>💪</span>
+
+                <strong>
+                    Self Confidence
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="growth">
+
+                <span>🌱</span>
+
+                <strong>
+                    Personal Growth
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="selflove">
+
+                <span>❤️</span>
+
+                <strong>
+                    Self Love
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="hope">
+
+                <span>🌤️</span>
+
+                <strong>
+                    Hope
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="goals">
+
+                <span>🎯</span>
+
+                <strong>
+                    Goals
+                </strong>
+
+            </button>
+
+
+            <button class="category-btn"
+                    data-category="peace">
+
+                <span>🧘</span>
+
+                <strong>
+                    Peace
+                </strong>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MOOD SECTION
+    ====================================================== -->
+
+    <section class="mood-section">
+
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                MOOD BASED
+            </p>
+
+            <h2>
+                How are you feeling?
+            </h2>
+
+            <p>
+                Choose your current mood and Companio will find
+                a suitable thought for you.
+            </p>
+
+        </div>
+
+
+        <div class="mood-grid">
+
+
+            <button class="mood-btn"
+                    data-mood="happy">
+
+                <span>😊</span>
+
+                <strong>
+                    Happy
+                </strong>
+
+            </button>
+
+
+            <button class="mood-btn"
+                    data-mood="sad">
+
+                <span>😔</span>
+
+                <strong>
+                    Sad
+                </strong>
+
+            </button>
+
+
+            <button class="mood-btn"
+                    data-mood="calm">
+
+                <span>😌</span>
+
+                <strong>
+                    Calm
+                </strong>
+
+            </button>
+
+
+            <button class="mood-btn"
+                    data-mood="stressed">
+
+                <span>😰</span>
+
+                <strong>
+                    Stressed
+                </strong>
+
+            </button>
+
+
+            <button class="mood-btn"
+                    data-mood="energetic">
+
+                <span>⚡</span>
+
+                <strong>
+                    Energetic
+                </strong>
+
+            </button>
+
+
+            <button class="mood-btn"
+                    data-mood="tired">
+
+                <span>😴</span>
+
+                <strong>
+                    Tired
+                </strong>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DAILY REMINDER
+    ====================================================== -->
+
+    <section class="reminder-card">
+
+
+        <div class="reminder-icon">
+
+            <i class="fa-solid fa-heart"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                A gentle reminder
+            </h3>
+
+            <p>
+                You don't need to be productive every moment.
+                Rest is also part of taking care of yourself.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='js/motivation.js') }}"></script>
+
+
+</body>
+
+</html>

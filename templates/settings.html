@@ -5,15 +5,23 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Companio | Settings</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
-
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
 </head>
 
@@ -21,182 +29,297 @@
 
 <div class="settings-container">
 
-    <!-- Sidebar -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="settings-sidebar">
 
-    <div class="settings-sidebar">
+        <div class="sidebar-header">
+            <div class="header-icon">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <h2>Settings</h2>
+        </div>
 
-        <h2>⚙️ Settings</h2>
+        <ul class="settings-nav">
 
-        <ul>
+            <li class="active">
+                <i class="fa-solid fa-user"></i>
+                <span>Account</span>
+            </li>
 
-            <li class="active">👤 Account</li>
+            <li>
+                <i class="fa-solid fa-palette"></i>
+                <span>Appearance</span>
+            </li>
 
-            <li>🎨 Appearance</li>
+            <li>
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </li>
 
-            <li>🤖 AI Preferences</li>
+            <li>
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Privacy</span>
+            </li>
 
-            <li>🧠 AI Memory</li>
+            <li>
+                <i class="fa-solid fa-download"></i>
+                <span>Export Data</span>
+            </li>
 
-            <li>🔔 Notifications</li>
-
-            <li>🔒 Privacy</li>
-
-            <li>📥 Export Data</li>
-
-            <li class="danger">🚨 Danger Zone</li>
+            <li class="danger">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Danger Zone</span>
+            </li>
 
         </ul>
 
-        <a href="{{ url_for('dashboard') }}" class="back-btn">
-            ← Back to Dashboard
+        <a href="{{ url_for('dashboard') }}" class="back-btn" title="Back to Dashboard">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Dashboard</span>
         </a>
 
-    </div>
-
-    <!-- Content -->
-
-    <div class="settings-content">
-
-        <div class="settings-header">
-
-    <div>
-
-        <h1>⚙️ Settings</h1>
-
-        <p>Customize your Companio experience</p>
-
-    </div>
-
-    <div class="theme-toggle">
-
-        <span id="themeLabel">🌙 Dark</span>
-
-        <label class="switch">
-
-            <input type="checkbox" id="themeSwitch">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</div>
-
-        <!-- Account -->
-
-        <div class="card">
-
-            <h3>👤 Account</h3>
-
-            <label>Name</label>
-
-            <input type="text" placeholder="Your Name">
-
-            <label>Email</label>
-
-            <input type="email" placeholder="Your Email">
-
-            <button>Update Profile</button>
-
-        </div>
+    </aside>
 
 
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+    <main class="settings-content">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+        <header class="settings-header">
+
+            <div>
+                <p class="section-label">PREFERENCES</p>
+                <h1>Application Settings</h1>
+                <p class="settings-subtitle">Customize your Companio experience and wellness environment.</p>
+            </div>
+
+            <!-- DARK MODE -->
+            <div class="theme-toggle">
+
+                <span id="themeLabel">🌙 Dark</span>
+
+                <label class="switch" for="themeSwitch">
+                    <input type="checkbox" id="themeSwitch">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+        </header>
 
 
+        <!-- =================================================
+             ACCOUNT
+        ================================================== -->
+        <section class="card" id="accountSection">
 
-        <!-- AI -->
+            <div class="card-title-wrap">
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h3>Account Information</h3>
+            </div>
 
-        <div class="card">
+            <div class="form-group">
+                <label for="profileName">Full Name</label>
+                <input type="text" id="profileName" placeholder="Your Name" value="{{ user.full_name if user and user.full_name else '' }}">
+            </div>
 
-            <h3>🤖 AI Response Style</h3>
+            <div class="form-group">
+                <label for="profileEmail">Email Address</label>
+                <input type="email" id="profileEmail" placeholder="Your Email" value="{{ user.email if user and user.email else '' }}">
+            </div>
 
-            <select>
-
-                <option>Friendly</option>
-
-                <option>Professional</option>
-
-                <option>Motivational</option>
-
-            </select>
-
-        </div>
-
-        <!-- Memory -->
-
-        <div class="card">
-
-            <h3>🧠 AI Memory</h3>
-
-            <label>
-
-                <input type="checkbox" checked>
-
-                Enable AI Memory
-
-            </label>
-
-            <button class="danger-btn">
-
-                Clear AI Memory
-
+            <button type="button" id="updateProfileBtn" class="primary-btn">
+                <span>Update Profile</span>
+                <i class="fa-solid fa-check"></i>
             </button>
 
-        </div>
+        </section>
 
-        <!-- Notifications -->
 
-        <div class="card">
+        <!-- =================================================
+             VOICE & LANGUAGE
+        ================================================== -->
+        <section class="card" id="voiceLanguageSection">
 
-            <h3>🔔 Notifications</h3>
+            <div class="card-title-wrap">
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
+                <h3>Voice & Language</h3>
+            </div>
 
-            <label>
+            <!-- TEXT TO SPEECH -->
+            <div class="setting-option">
 
-                <input type="checkbox" checked>
+                <div class="option-text">
+                    <strong>Text-to-Speech</strong>
+                    <small>Automatically read Companio replies aloud using system speech synthesizer.</small>
+                </div>
 
-                Daily Motivation
+                <label class="switch" for="ttsSwitch">
+                    <input type="checkbox" id="ttsSwitch">
+                    <span class="slider"></span>
+                </label>
 
-            </label>
+            </div>
 
-            <label>
+            <p id="ttsStatus" class="setting-status">Voice is currently OFF</p>
 
-                <input type="checkbox">
+            <!-- VOICE GENDER -->
+            <div class="form-group">
+                <label for="voiceGender">Voice Preference</label>
+                <select id="voiceGender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+                <p class="setting-help">Companio will prefer the selected voice when your browser provides one.</p>
+            </div>
 
-                Mood Reminder
+            <!-- CONVERSATION LANGUAGE -->
+            <div class="form-group">
+                <label for="conversationLanguage">Conversation Language</label>
+                <select id="conversationLanguage">
+                    <option value="English">English</option>
+                    <option value="Kannada">Kannada</option>
+                </select>
+                <p class="setting-help">Companio will try to respond in your selected primary language.</p>
+            </div>
 
-            </label>
+        </section>
 
-        </div>
 
-        <!-- Privacy -->
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================== -->
+        <section class="card" id="notificationsSection">
 
-        <div class="card">
+            <div class="card-title-wrap">
+                <div class="card-icon orange">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <h3>Notifications & Reminders</h3>
+            </div>
 
-            <h3>🔒 Privacy</h3>
+            <div class="checkbox-option">
+                <label>
+                    <input type="checkbox" id="dailyMotivation" {{ 'checked' if not settings or settings.dailyMotivation else '' }}>
+                    <span>Daily Motivation Thoughts</span>
+                </label>
+            </div>
 
-            <label>
+            <div class="checkbox-option">
+                <label>
+                    <input type="checkbox" id="moodReminder" {{ 'checked' if settings and settings.moodReminder else '' }}>
+                    <span>Mood Check-in Reminder</span>
+                </label>
+            </div>
 
-                <input type="checkbox" checked>
+            <div class="checkbox-option">
+                <label>
+                    <input type="checkbox" id="wellnessTips" {{ 'checked' if not settings or settings.wellnessTips else '' }}>
+                    <span>Daily Wellness Activities & Tips</span>
+                </label>
+            </div>
 
-                Save Chat History
+            <p id="notificationStatus" class="setting-status" style="margin-top: 12px; margin-bottom: 0;"></p>
 
-            </label>
+        </section>
 
-            <label>
 
-                <input type="checkbox" checked>
+        <!-- =================================================
+             PRIVACY
+        ================================================== -->
+        <section class="card" id="privacySection">
 
-                Save Mood History
+            <div class="card-title-wrap">
+                <div class="card-icon green">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Privacy & Storage</h3>
+            </div>
 
-            </label>
+            <div class="checkbox-option">
+                <label>
+                    <input type="checkbox" id="saveChatHistory" {{ 'checked' if not settings or settings.saveChatHistory else '' }}>
+                    <span>Save Chat History</span>
+                </label>
+            </div>
 
-        </div>
+            <div class="checkbox-option">
+                <label>
+                    <input type="checkbox" id="saveMoodHistory" {{ 'checked' if not settings or settings.saveMoodHistory else '' }}>
+                    <span>Save Mood History</span>
+                </label>
+            </div>
 
-    </div>
+        </section>
+
+
+        <!-- =================================================
+             DATA
+        ================================================== -->
+        <section class="card" id="dataSection">
+
+            <div class="card-title-wrap">
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h3>Data Export</h3>
+            </div>
+
+            <div class="data-buttons">
+
+                <button type="button" id="exportChatsBtn" class="secondary-btn">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Export Chats</span>
+                </button>
+
+                <button type="button" id="exportMoodBtn" class="secondary-btn">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Export Mood History</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DANGER ZONE
+        ================================================== -->
+        <section class="card danger-card" id="dangerSection">
+
+            <div class="card-title-wrap">
+                <div class="card-icon red">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3>Danger Zone</h3>
+            </div>
+
+            <p class="danger-desc">
+                These actions will reset your local client settings and preferences. This action cannot be undone.
+            </p>
+
+            <button type="button" class="danger-btn" id="clearDataBtn">
+                <i class="fa-solid fa-trash-arrow-up"></i>
+                <span>Clear Local Settings</span>
+            </button>
+
+        </section>
+
+    </main>
 
 </div>
 
+<!-- JAVASCRIPT -->
 <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
 
 </body>

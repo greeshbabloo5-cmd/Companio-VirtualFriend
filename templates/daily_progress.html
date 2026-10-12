@@ -5,186 +5,351 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Companio | Daily Progress</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/daily_progress.css') }}">
+    <!-- Theme System (Must load before page CSS to set theme variables & attributes) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/daily_progress.css') }}">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- Header -->
+    <!-- =====================================================
+         HEADER (STANDARDIZED WITH DAILY MOTIVATION)
+    ====================================================== -->
+    <header class="page-header">
 
-    <div class="header">
-
-        <a href="{{ url_for('dashboard') }}" class="back-btn">
+        <a href="{{ url_for('dashboard') }}" class="back-btn" title="Back to Dashboard">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-        <div>
+        <div class="header-content">
 
-            <h1>Daily Progress</h1>
+            <div class="header-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
 
-            <p>Track your emotional journey with AI insights.</p>
+            <div>
+                <h1>Daily Progress</h1>
+                <p>Track your emotional journey, streaks, and wellness metrics with Companio.</p>
+            </div>
 
         </div>
 
-    </div>
+    </header>
 
 
-    <!-- Statistics -->
-
+    <!-- =====================================================
+         STATISTICS CARDS
+    ====================================================== -->
     <div class="stats">
 
+        <!-- TODAY'S MOOD -->
         <div class="stat-card">
-
-            <i class="fa-solid fa-face-smile"></i>
-
+            <div class="stat-icon-wrap blue">
+                <i class="fa-solid fa-face-smile"></i>
+            </div>
             <h3>Today's Mood</h3>
-
-            <h2>😊 Happy</h2>
-
+            <h2 id="todayMood">{{ today_mood_display if today_mood_display else '🌿 No mood yet' }}</h2>
         </div>
 
+        <!-- CURRENT STREAK -->
         <div class="stat-card">
-
-            <i class="fa-solid fa-fire"></i>
-
+            <div class="stat-icon-wrap orange">
+                <i class="fa-solid fa-fire"></i>
+            </div>
             <h3>Current Streak</h3>
-
-            <h2>5 Days</h2>
-
+            <h2 id="currentStreak">{{ current_streak_display if current_streak_display else '0 Days' }}</h2>
         </div>
 
+        <!-- MOOD BALANCE -->
         <div class="stat-card">
-
-            <i class="fa-solid fa-heart"></i>
-
-            <h3>Wellness Score</h3>
-
-            <h2>87%</h2>
-
+            <div class="stat-icon-wrap purple">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <h3>Mood Balance</h3>
+            <h2 id="wellnessScore">{{ wellness_score_display if wellness_score_display else '0%' }}</h2>
         </div>
 
     </div>
 
 
-    <!-- Charts -->
+    <!-- =====================================================
+         TODAY'S MOOD CHECK-IN / SELECTOR
+    ====================================================== -->
+    <section class="daily-mood-selector-card" id="dailyMoodSelectorCard" style="backdrop-filter: blur(16px); border-radius: 24px; padding: 24px 28px; margin-bottom: 32px;">
 
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <span class="section-label" style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">DAILY MOOD CHECK-IN</span>
+                <h2 style="font-size: 20px; font-weight: 700; margin: 4px 0 2px 0;">How are you feeling today?</h2>
+                <p style="font-size: 13px; margin: 0;">Log today's mood to update your emotional wellness across all Companio pages.</p>
+            </div>
+
+            <div id="activeMoodPill" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;">
+                <i class="fa-solid fa-sparkles"></i>
+                <span id="activeMoodPillText">Active: {{ today_mood_display if today_mood_display else '🌿 No mood yet' }}</span>
+            </div>
+        </div>
+
+        <div class="daily-mood-options" style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+            <button type="button" class="daily-mood-btn" data-mood="Happy" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">😊</span>
+                <span>Happy</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Calm" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">😌</span>
+                <span>Calm</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Sad" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">😔</span>
+                <span>Sad</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Tired" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">☕</span>
+                <span>Tired</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Anxious" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">🌸</span>
+                <span>Anxious</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Stressed" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">😰</span>
+                <span>Stressed</span>
+            </button>
+            <button type="button" class="daily-mood-btn" data-mood="Energetic" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                <span style="font-size: 18px;">⚡</span>
+                <span>Energetic</span>
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <p id="dailyMoodStatusMsg" style="font-size: 13px; font-weight: 500; margin: 0;"></p>
+
+            <button type="button" id="saveDailyMoodButton" disabled style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed, #6366f1); color: #ffffff; border: none; padding: 12px 26px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; opacity: 0.5;">
+                <span>Save Today's Mood</span>
+                <i class="fa-solid fa-heart"></i>
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHARTS
+    ====================================================== -->
     <div class="charts">
 
+        <!-- WEEKLY MOOD TREND -->
         <div class="chart-card">
-
-            <h2>Weekly Mood Trend</h2>
-
-            <canvas id="moodChart"></canvas>
-
+            <div class="chart-header">
+                <div>
+                    <span class="section-label">7-DAY TIMELINE</span>
+                    <h2>Weekly Mood Trend</h2>
+                </div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="moodChart"></canvas>
+            </div>
         </div>
 
+        <!-- MOOD DISTRIBUTION -->
         <div class="chart-card">
-
-            <h2>Mood Distribution</h2>
-
-            <canvas id="pieChart"></canvas>
-
+            <div class="chart-header">
+                <div>
+                    <span class="section-label">FREQUENCY BREAKDOWN</span>
+                    <h2>Mood Distribution</h2>
+                </div>
+            </div>
+            <div class="chart-canvas-wrap pie-wrap">
+                <canvas id="pieChart"></canvas>
+            </div>
         </div>
 
     </div>
 
 
-    <!-- AI Analysis -->
-
+    <!-- =====================================================
+         AI MOOD ANALYSIS
+    ====================================================== -->
     <div class="analysis">
 
-        <h2>🤖 AI Mood Analysis</h2>
+        <div class="analysis-icon">
+            <i class="fa-solid fa-brain"></i>
+        </div>
 
-        <p id="analysisText">
-
-            Your mood has remained positive throughout the week.
-            Keep maintaining your healthy routine and continue
-            practicing mindfulness.
-
-        </p>
+        <div>
+            <h2>AI Mood Analysis</h2>
+            <p id="analysisText">
+                Start recording your mood to receive personalized insights and emotional patterns from Companio.
+            </p>
+        </div>
 
     </div>
 
 
-    <!-- Achievements -->
-
+    <!-- =====================================================
+         ACHIEVEMENTS / TODAY'S PROGRESS
+    ====================================================== -->
     <div class="achievements">
 
-        <h2>🏆 Today's Achievements</h2>
+        <div class="section-heading">
+            <p class="section-label">DAILY MILESTONES</p>
+            <h2>🏆 Today's Progress</h2>
+        </div>
 
-        <ul>
-
-            <li>✅ Completed Breathing Exercise</li>
-
-            <li>✅ Had a Positive Conversation</li>
-
-            <li>✅ Logged Today's Mood</li>
-
+        <ul id="achievementList">
+            <li>🌿 No mood logged yet today.</li>
         </ul>
 
     </div>
 
 
-    <!-- Recommendations -->
-
+    <!-- =====================================================
+         RECOMMENDATIONS FOR YOU
+    ====================================================== -->
     <div class="recommendations">
 
-        <h2>💡 AI Recommendations</h2>
-
-        <div class="recommend-grid">
-
-            <div class="recommend-card">
-
-                🎵
-
-                <h3>Relaxing Music</h3>
-
-                <p>Listen to calm music for 15 minutes.</p>
-
-            </div>
-
-            <div class="recommend-card">
-
-                🚶
-
-                <h3>Take a Walk</h3>
-
-                <p>Spend 10 minutes outdoors.</p>
-
-            </div>
-
-            <div class="recommend-card">
-
-                🧘
-
-                <h3>Meditation</h3>
-
-                <p>Practice deep breathing for 5 minutes.</p>
-
-            </div>
-
+        <div class="section-heading">
+            <p class="section-label">NEXT STEPS FOR YOU</p>
+            <h2>💡 Recommendations for You</h2>
         </div>
+
+        <div class="recommend-grid" id="recommendationGrid"></div>
 
     </div>
 
 </div>
 
-<script src="{{ url_for('static', filename='js/daily_progress.js') }}"></script>
+
+<!-- =========================================================
+     DATA FROM FLASK
+========================================================= -->
+<script id="progressData" type="application/json">
+{
+    "latestMood": {{ latest_mood | tojson }},
+    "todayMoodDisplay": {{ today_mood_display | tojson }},
+    "currentStreakDisplay": {{ current_streak_display | tojson }},
+    "wellnessScoreDisplay": {{ wellness_score_display | tojson }},
+    "moodHistory": {{ mood_history | tojson }},
+    "moodStatistics": {{ mood_statistics | tojson }}
+}
+</script>
+
+<!-- JAVASCRIPT -->
+<script src="{{ url_for('static', filename='js/daily_process.js') }}"></script>
+
+<!-- MOOD SELECTOR INTERACTION -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let selectedMood = null;
+    const moodBtns = document.querySelectorAll(".daily-mood-btn");
+    const saveBtn = document.getElementById("saveDailyMoodButton");
+    const statusMsg = document.getElementById("dailyMoodStatusMsg");
+    const currentMoodStr = {{ (current_mood or '') | tojson }};
+
+    // Pre-highlight if user already logged a mood today
+    if (currentMoodStr) {
+        moodBtns.forEach(btn => {
+            const btnMood = btn.getAttribute("data-mood") || "";
+            if (btnMood.toLowerCase() === currentMoodStr.toLowerCase()) {
+                btn.style.background = "linear-gradient(135deg, #7c3aed, #6366f1)";
+                btn.style.color = "#ffffff";
+                btn.style.borderColor = "transparent";
+                btn.style.boxShadow = "0 4px 14px rgba(124, 58, 237, 0.35)";
+            }
+        });
+    }
+
+    moodBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
+            moodBtns.forEach(b => {
+                b.style.background = "";
+                b.style.color = "";
+                b.style.borderColor = "";
+                b.style.boxShadow = "";
+            });
+
+            this.style.background = "linear-gradient(135deg, #7c3aed, #6366f1)";
+            this.style.color = "#ffffff";
+            this.style.borderColor = "transparent";
+            this.style.boxShadow = "0 4px 14px rgba(124, 58, 237, 0.35)";
+
+            selectedMood = this.getAttribute("data-mood");
+            saveBtn.disabled = false;
+            saveBtn.style.opacity = "1";
+            saveBtn.style.cursor = "pointer";
+            statusMsg.textContent = "";
+        });
+    });
+
+    saveBtn.addEventListener("click", async function () {
+        if (!selectedMood) return;
+
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = `<span>Saving...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+        statusMsg.style.color = "#6366f1";
+        statusMsg.textContent = "Updating your mood across Companio...";
+
+        try {
+            const resp = await fetch("{{ url_for('save_mood') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mood: selectedMood, note: "" })
+            });
+
+            const data = await resp.json();
+
+            if (data.success) {
+                statusMsg.style.color = "#10b981";
+                statusMsg.textContent = "Saved! Updating all pages...";
+                saveBtn.innerHTML = `<span>Saved!</span> <i class="fa-solid fa-check"></i>`;
+
+                const todayEl = document.getElementById("todayMood");
+                if (todayEl && data.today_mood_display) {
+                    todayEl.textContent = data.today_mood_display;
+                }
+
+                const pillEl = document.getElementById("activeMoodPillText");
+                if (pillEl && data.today_mood_display) {
+                    pillEl.textContent = "Active: " + data.today_mood_display;
+                }
+
+                setTimeout(function () {
+                    window.location.reload();
+                }, 600);
+            } else {
+                throw new Error(data.message || "Failed to save mood");
+            }
+        } catch (err) {
+            console.error("Save mood error:", err);
+            statusMsg.style.color = "#ef4444";
+            statusMsg.textContent = err.message || "Unable to save mood.";
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = `<span>Try Again</span> <i class="fa-solid fa-rotate-right"></i>`;
+        }
+    });
+});
+</script>
 
 </body>
 

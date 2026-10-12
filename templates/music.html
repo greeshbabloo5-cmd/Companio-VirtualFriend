@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companio | Music For You</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/music.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =====================================================
+         HEADER (STANDARDIZED WITH DAILY MOTIVATION)
+    ====================================================== -->
+    <header class="page-header">
+
+        <a href="{{ url_for('recommendations') }}" class="back-btn" title="Back to For You">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="header-content">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-music"></i>
+            </div>
+
+            <div>
+                <h1>Music For You</h1>
+                <p>Tell Companio how you feel and discover uplifting music for your mood.</p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOOD SECTION (HERO GLASS CARD)
+    ====================================================== -->
+    <section class="mood-section">
+
+        <div class="mood-heading">
+            <span class="small-label">PERSONALIZE YOUR MUSIC</span>
+            <h2>How are you feeling right now?</h2>
+            <p>
+                Choose your current mood and Companio will personalize your music suggestions.
+            </p>
+        </div>
+
+        <div class="moods">
+
+            <button class="mood-btn" data-mood="happy">
+                <span>😊</span>
+                <strong>Happy</strong>
+            </button>
+
+            <button class="mood-btn" data-mood="sad">
+                <span>😢</span>
+                <strong>Sad</strong>
+            </button>
+
+            <button class="mood-btn" data-mood="calm">
+                <span>😌</span>
+                <strong>Calm</strong>
+            </button>
+
+            <button class="mood-btn" data-mood="stressed">
+                <span>😰</span>
+                <strong>Stressed</strong>
+            </button>
+
+            <button class="mood-btn" data-mood="energetic">
+                <span>⚡</span>
+                <strong>Energetic</strong>
+            </button>
+
+            <button class="mood-btn" data-mood="tired">
+                <span>😴</span>
+                <strong>Tired</strong>
+            </button>
+
+        </div>
+
+        <div id="moodResult" class="mood-result">
+            Select your mood to get personalized music.
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LANGUAGE SELECTION
+    ====================================================== -->
+    <section class="music-section">
+
+        <div class="section-header">
+            <div>
+                <p class="section-label">LANGUAGE FILTER</p>
+                <h2>🌍 Choose Your Language</h2>
+                <p>Explore uplifting soundtrack recommendations in your preferred language.</p>
+            </div>
+        </div>
+
+        <div class="language-list">
+            <button class="language active">All</button>
+            <button class="language">Hindi</button>
+            <button class="language">English</button>
+            <button class="language">Kannada</button>
+            <button class="language">Telugu</button>
+            <button class="language">Tamil</button>
+            <button class="language">Malayalam</button>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MOOD RECOMMENDATIONS
+    ====================================================== -->
+    <section class="music-section">
+
+        <div class="section-header">
+            <div>
+                <p class="section-label">CURATED TRACKS</p>
+                <h2 id="recommendationTitle">💙 Recommended For You</h2>
+                <p id="recommendationSubtitle">
+                    Select your mood above to personalize these recommendations.
+                </p>
+            </div>
+        </div>
+
+        <div class="music-grid" id="recommendationGrid">
+
+            <div class="music-card">
+                <div class="album-cover blue-cover">
+                    <i class="fa-solid fa-music"></i>
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+                <h3>Feel Good Mix</h3>
+                <p>Positive songs for your day</p>
+            </div>
+
+            <div class="music-card">
+                <div class="album-cover purple-cover">
+                    <i class="fa-solid fa-headphones"></i>
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+                <h3>Peaceful Moments</h3>
+                <p>Slow and relaxing music</p>
+            </div>
+
+            <div class="music-card">
+                <div class="album-cover pink-cover">
+                    <i class="fa-solid fa-heart"></i>
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+                <h3>Comfort Mix</h3>
+                <p>Gentle songs for emotional moments</p>
+            </div>
+
+            <div class="music-card">
+                <div class="album-cover orange-cover">
+                    <i class="fa-solid fa-bolt"></i>
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+                <h3>Energy Boost</h3>
+                <p>Music to lift your energy</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FILM & MOVIE MUSIC
+    ====================================================== -->
+    <section class="movie-section">
+
+        <div class="section-heading">
+            <p class="section-label">CINEMATIC SOUNDS</p>
+            <h2>🎬 Film & Movie Music</h2>
+            <p>Discover popular soundtrack collections across diverse cinemas.</p>
+        </div>
+
+        <div class="cinema-grid">
+
+            <!-- Bollywood -->
+            <button class="cinema-card" data-cinema="Hindi">
+                <div class="cinema-left">
+                    <div class="cinema-icon">🎬</div>
+                    <div>
+                        <h3>Bollywood</h3>
+                        <p>Hindi film music</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Kannada -->
+            <button class="cinema-card" data-cinema="Kannada">
+                <div class="cinema-left">
+                    <div class="cinema-icon">🎥</div>
+                    <div>
+                        <h3>Kannada Cinema</h3>
+                        <p>Kannada film music</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Telugu -->
+            <button class="cinema-card" data-cinema="Telugu">
+                <div class="cinema-left">
+                    <div class="cinema-icon">🎞️</div>
+                    <div>
+                        <h3>Telugu Cinema</h3>
+                        <p>Telugu film music</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Tamil -->
+            <button class="cinema-card" data-cinema="Tamil">
+                <div class="cinema-left">
+                    <div class="cinema-icon">🍿</div>
+                    <div>
+                        <h3>Tamil Cinema</h3>
+                        <p>Tamil film music</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+        <!-- Selected Cinema Songs -->
+        <div id="cinemaSongsSection" class="cinema-songs-section">
+
+            <div class="cinema-result-header">
+                <div>
+                    <h2 id="cinemaTitle">🎬 Movie Music</h2>
+                    <p id="cinemaSubtitle">Select a cinema category to explore songs.</p>
+                </div>
+                <button id="closeCinema" class="close-cinema-btn" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cinemaSongsGrid" class="cinema-songs-grid"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ALBUMS & PLAYLISTS
+    ====================================================== -->
+    <section class="music-section playlist-section">
+
+        <div class="section-header">
+            <div>
+                <p class="section-label">HANDPICKED MOOD SETS</p>
+                <h2>💿 Albums & Playlists</h2>
+                <p>Explore comforting music collections curated for different emotional moments.</p>
+            </div>
+        </div>
+
+        <div class="playlist-grid">
+
+            <!-- Morning Motivation -->
+            <button class="playlist-card" data-playlist="morning">
+                <div class="playlist-icon">🌅</div>
+                <div class="playlist-text">
+                    <h3>Morning Motivation</h3>
+                    <p>Start your day positively</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Study & Focus -->
+            <button class="playlist-card" data-playlist="study">
+                <div class="playlist-icon">📚</div>
+                <div class="playlist-text">
+                    <h3>Study & Focus</h3>
+                    <p>Music for concentration</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Night Calm -->
+            <button class="playlist-card" data-playlist="night">
+                <div class="playlist-icon">🌙</div>
+                <div class="playlist-text">
+                    <h3>Night Calm</h3>
+                    <p>Slow music before sleep</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Feel Better -->
+            <button class="playlist-card" data-playlist="feelbetter">
+                <div class="playlist-icon">❤️</div>
+                <div class="playlist-text">
+                    <h3>Feel Better</h3>
+                    <p>Comforting music collection</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+        <!-- SELECTED PLAYLIST -->
+        <div id="playlistResult" class="playlist-result">
+
+            <div class="playlist-result-header">
+                <div>
+                    <span class="playlist-small-title">COMPANIO PLAYLIST</span>
+                    <h2 id="playlistTitle">Your Playlist</h2>
+                    <p id="playlistDescription">Select a playlist above.</p>
+                </div>
+                <button id="closePlaylist" class="close-playlist" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="playlistSongs" class="playlist-songs"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/music.js') }}"></script>
+
+</body>
+
+</html>

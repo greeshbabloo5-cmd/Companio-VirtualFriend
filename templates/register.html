@@ -7,7 +7,17 @@
 
     <title>Register | Companio</title>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Theme System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
 </head>
 
@@ -19,7 +29,7 @@
 
     <p>Join Companio Today</p>
 
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" id="registerForm">
 
         <div class="input-box">
             <input type="text" name="fullname" placeholder="Full Name" required>
@@ -46,7 +56,38 @@
             </select>
         </div>
 
-        <button type="submit">
+        <!-- Field 1: Primary Emergency Contact (Required) -->
+        <div class="input-box emergency-contact-box">
+            <label for="parent_phone_primary" class="input-label">Primary Emergency Contact (Parent/Guardian)</label>
+            <div class="input-icon-wrapper">
+                <i class="fa-solid fa-phone field-icon"></i>
+                <input type="tel"
+                       id="parent_phone_primary"
+                       name="parent_phone_primary"
+                       placeholder="Enter primary contact number"
+                       maxlength="10"
+                       inputmode="numeric"
+                       required>
+            </div>
+            <span class="inline-error" id="primaryPhoneError"></span>
+        </div>
+
+        <!-- Field 2: Secondary Emergency Contact (Optional) -->
+        <div class="input-box emergency-contact-box">
+            <label for="parent_phone_secondary" class="input-label">Secondary Emergency Contact (Parent/Guardian)</label>
+            <div class="input-icon-wrapper">
+                <i class="fa-solid fa-phone field-icon"></i>
+                <input type="tel"
+                       id="parent_phone_secondary"
+                       name="parent_phone_secondary"
+                       placeholder="Enter secondary contact number"
+                       maxlength="10"
+                       inputmode="numeric">
+            </div>
+            <span class="inline-error" id="secondaryPhoneError"></span>
+        </div>
+
+        <button type="submit" id="registerBtn">
             Register
         </button>
 
@@ -58,6 +99,123 @@
     </div>
 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("registerForm");
+    const primaryInput = document.getElementById("parent_phone_primary");
+    const secondaryInput = document.getElementById("parent_phone_secondary");
+    const primaryError = document.getElementById("primaryPhoneError");
+    const secondaryError = document.getElementById("secondaryPhoneError");
+
+    function validatePrimary() {
+        const val = (primaryInput.value || "").trim();
+
+        if (!val) {
+            primaryError.textContent = "Primary emergency contact is required.";
+            primaryInput.classList.add("input-invalid");
+            return false;
+        }
+
+        if (val.length !== 10 || !/^\d{10}$/.test(val)) {
+            primaryError.textContent = "Primary emergency contact must be exactly 10 digits.";
+            primaryInput.classList.add("input-invalid");
+            return false;
+        }
+
+        primaryError.textContent = "";
+        primaryInput.classList.remove("input-invalid");
+
+        // Re-check secondary duplicate status if secondary has value
+        const secVal = (secondaryInput.value || "").trim();
+        if (secVal) {
+            validateSecondary();
+        }
+
+        return true;
+    }
+
+    function validateSecondary() {
+        const secVal = (secondaryInput.value || "").trim();
+        const primVal = (primaryInput.value || "").trim();
+
+        // Secondary is optional
+        if (!secVal) {
+            secondaryError.textContent = "";
+            secondaryInput.classList.remove("input-invalid");
+            return true;
+        }
+
+        if (secVal.length !== 10 || !/^\d{10}$/.test(secVal)) {
+            secondaryError.textContent = "Secondary emergency contact must be exactly 10 digits.";
+            secondaryInput.classList.add("input-invalid");
+            return false;
+        }
+
+        // Duplicate prevention
+        if (primVal && secVal === primVal) {
+            secondaryError.textContent = "Primary and secondary emergency contacts cannot be the same number.";
+            secondaryInput.classList.add("input-invalid");
+            return false;
+        }
+
+        secondaryError.textContent = "";
+        secondaryInput.classList.remove("input-invalid");
+        return true;
+    }
+
+    if (primaryInput) {
+        primaryInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+            if (this.value.length === 10) {
+                validatePrimary();
+            } else if (primaryError.textContent) {
+                validatePrimary();
+            }
+        });
+
+        primaryInput.addEventListener("blur", function () {
+            if (this.value.length > 0) {
+                validatePrimary();
+            }
+        });
+    }
+
+    if (secondaryInput) {
+        secondaryInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+            if (this.value.length === 10 || !this.value) {
+                validateSecondary();
+            } else if (secondaryError.textContent) {
+                validateSecondary();
+            }
+        });
+
+        secondaryInput.addEventListener("blur", function () {
+            validateSecondary();
+        });
+    }
+
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            const isPrimValid = validatePrimary();
+            const isSecValid = validateSecondary();
+
+            if (!isPrimValid) {
+                e.preventDefault();
+                primaryInput.focus();
+                return;
+            }
+
+            if (!isSecValid) {
+                e.preventDefault();
+                secondaryInput.focus();
+                return;
+            }
+        });
+    }
+});
+</script>
 
 </body>
 </html>

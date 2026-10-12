@@ -1,0 +1,59 @@
+/* =========================================================
+   COMPANIO - GLOBAL STYLESHEET (global.css)
+   Light & Dark Mode Integration with theme.css
+   ========================================================= */
+
+@import url("theme.css");
+
+/* ---------------------------------------------------------
+   GLOBAL RESET & SMOOTH RENDERING
+   --------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------
+   GLOBAL THEME APPLIANCE
+   --------------------------------------------------------- */
+html[data-theme="dark"],
+body[data-theme="dark"] {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Sidebars - Branded Purple in both Light & Dark modes */
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .chat-sidebar,
+[data-theme="dark"] .settings-sidebar,
+[data-theme="dark"] aside.sidebar,
+[data-theme="dark"] aside.settings-sidebar {
+    background: var(--sidebar-bg) !important;
+    background-color: var(--sidebar-bg) !important;
+    border-color: var(--sidebar-border) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .sidebar-bottom,
+[data-theme="dark"] .bottom-links {
+    border-top-color: var(--sidebar-border) !important;
+}
+
+[data-theme="dark"] .sidebar-link,
+[data-theme="dark"] .settings-nav li,
+[data-theme="dark"] .history-item {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .sidebar-link:hover,
+[data-theme="dark"] .settings-nav li:hover,
+[data-theme="dark"] .history-item:hover {
+    background: rgba(167, 139, 250, 0.15) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .settings-nav li.active,
+[data-theme="dark"] .sidebar-link.active,
+[data-theme="dark"] .history-item.active {
+    background: var(--accent-purple-gradient) !important;
+    color: #ffffff !important;
+}

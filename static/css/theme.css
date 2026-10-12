@@ -1,0 +1,656 @@
+/* =========================================================
+   COMPANIO - GLOBAL THEME DESIGN SYSTEM (theme.css)
+   Light & Dark Mode CSS Variables and Rules
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. ROOT VARIABLES
+   --------------------------------------------------------- */
+:root {
+    --bg-primary: #f8f5ff;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-glass: rgba(255, 255, 255, 0.88);
+
+    --text-primary: #2e1065;
+    --text-secondary: #687386;
+    --text-muted: #9ca3af;
+
+    --border-color: rgba(124, 58, 237, 0.15);
+    --border-subtle: rgba(233, 213, 255, 0.6);
+
+    --input-bg: #ffffff;
+    --input-text: #2e1065;
+    --input-border: rgba(124, 58, 237, 0.2);
+
+    --shadow-color: rgba(92, 45, 145, 0.10);
+    --shadow-card: 0 10px 30px rgba(92, 45, 145, 0.08);
+    --shadow-hover: 0 16px 36px rgba(92, 45, 145, 0.14);
+
+    --sidebar-bg: #2e1065;
+    --sidebar-border: rgba(233, 213, 255, 0.08);
+
+    --accent-purple: #7c3aed;
+    --accent-purple-gradient: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+html[data-theme="dark"] {
+    --bg-primary: #0f0b1f;
+    --bg-secondary: #171126;
+    --bg-card: #1d1630;
+    --bg-card-glass: rgba(29, 22, 48, 0.88);
+
+    --text-primary: #f8f7ff;
+    --text-secondary: #c8c1d9;
+    --text-muted: #958ba8;
+
+    --border-color: rgba(167, 139, 250, 0.22);
+    --border-subtle: rgba(167, 139, 250, 0.15);
+
+    --input-bg: #211936;
+    --input-text: #f8f7ff;
+    --input-border: rgba(167, 139, 250, 0.28);
+
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.40);
+    --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.55);
+
+    /* Purple Companio Branding preserved! NOT black! */
+    --sidebar-bg: #1c0a3f;
+    --sidebar-border: rgba(167, 139, 250, 0.16);
+
+    --accent-purple: #8b5cf6;
+    --accent-purple-gradient: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+/* ---------------------------------------------------------
+   2. GLOBAL BODY & MAIN BACKGROUND IN DARK MODE
+   --------------------------------------------------------- */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(139, 92, 246, 0.12),
+            transparent 40%
+        ),
+        var(--bg-primary) !important;
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .main,
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .container,
+html[data-theme="dark"] .layout,
+html[data-theme="dark"] .settings-container,
+html[data-theme="dark"] .settings-content {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+}
+
+/* ---------------------------------------------------------
+   3. SIDEBARS (PRESERVE COMPANIO PURPLE BRANDING)
+   --------------------------------------------------------- */
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] aside.sidebar,
+html[data-theme="dark"] .chat-sidebar,
+html[data-theme="dark"] .settings-sidebar,
+html[data-theme="dark"] aside.settings-sidebar {
+    background: var(--sidebar-bg) !important;
+    background-color: var(--sidebar-bg) !important;
+    border-right: 1px solid var(--sidebar-border) !important;
+    color: #ffffff !important;
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.45) !important;
+}
+
+html[data-theme="dark"] .sidebar-link,
+html[data-theme="dark"] .settings-nav li,
+html[data-theme="dark"] .history-item {
+    color: #c8c1d9 !important;
+}
+
+html[data-theme="dark"] .sidebar-link:hover,
+html[data-theme="dark"] .settings-nav li:hover,
+html[data-theme="dark"] .history-item:hover {
+    background: rgba(167, 139, 250, 0.15) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .sidebar-link.active,
+html[data-theme="dark"] .settings-nav li.active,
+html[data-theme="dark"] .history-item.active {
+    background: var(--accent-purple-gradient) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35) !important;
+}
+
+html[data-theme="dark"] .sidebar-brand h2,
+html[data-theme="dark"] .sidebar-header h2 {
+    color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   4. CARDS & GLASS CONTAINERS ACROSS ALL PAGES
+   --------------------------------------------------------- */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .glass-card,
+html[data-theme="dark"] .glass-section-card,
+html[data-theme="dark"] .parent-section-card,
+html[data-theme="dark"] .intro-card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .chart-card,
+html[data-theme="dark"] .analysis,
+html[data-theme="dark"] .achievements,
+html[data-theme="dark"] .recommendations,
+html[data-theme="dark"] .recommend-card,
+html[data-theme="dark"] .daily-mood-selector-card,
+html[data-theme="dark"] .profile-hero-card,
+html[data-theme="dark"] .memory-card,
+html[data-theme="dark"] .memory-item,
+html[data-theme="dark"] .feedback-card,
+html[data-theme="dark"] .stretch-card,
+html[data-theme="dark"] .music-card,
+html[data-theme="dark"] .cinema-card,
+html[data-theme="dark"] .cinema-songs-section,
+html[data-theme="dark"] .playlist-card,
+html[data-theme="dark"] .playlist-result,
+html[data-theme="dark"] .song-card,
+html[data-theme="dark"] .sound-card,
+html[data-theme="dark"] .activity-card,
+html[data-theme="dark"] .activity-workspace,
+html[data-theme="dark"] .workspace-box,
+html[data-theme="dark"] .relax-card,
+html[data-theme="dark"] .grounding-step,
+html[data-theme="dark"] .help-card,
+html[data-theme="dark"] .parent-card-box,
+html[data-theme="dark"] .thought-card,
+html[data-theme="dark"] .motivation-card,
+html[data-theme="dark"] .wellness-reminder,
+html[data-theme="dark"] .reminder-card,
+html[data-theme="dark"] .mood-section,
+html[data-theme="dark"] .chat-cta-card,
+html[data-theme="dark"] .thought-space-card,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .empty-state,
+html[data-theme="dark"] .now-playing {
+    background: var(--bg-card-glass) !important;
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .stat-card:hover,
+html[data-theme="dark"] .stretch-card:hover,
+html[data-theme="dark"] .music-card:hover,
+html[data-theme="dark"] .sound-card:hover,
+html[data-theme="dark"] .activity-card:hover,
+html[data-theme="dark"] .recommend-card:hover,
+html[data-theme="dark"] .memory-item:hover,
+html[data-theme="dark"] .song-card:hover,
+html[data-theme="dark"] .cinema-card:hover,
+html[data-theme="dark"] .playlist-card:hover {
+    box-shadow: var(--shadow-hover) !important;
+    border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+/* Modals & Dialogs */
+html[data-theme="dark"] .mood-modal-box,
+html[data-theme="dark"] .stretch-modal-box,
+html[data-theme="dark"] .breathing-modal-box,
+html[data-theme="dark"] .sos-modal-card,
+html[data-theme="dark"] .modal-box,
+html[data-theme="dark"] .modal-card {
+    background: #1d1630 !important;
+    background-color: #1d1630 !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ---------------------------------------------------------
+   4B. COMPONENT SPECIFICS & DETAIL ELEMENTS
+   --------------------------------------------------------- */
+/* Emergency Support - Parent / Guardian Contacts */
+html[data-theme="dark"] .parent-section-card {
+    background: linear-gradient(135deg, rgba(29, 22, 48, 0.95), rgba(23, 17, 38, 0.95)) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .parent-card-box {
+    background: #1d1630 !important;
+    border-color: var(--border-color) !important;
+    box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="dark"] .parent-card-box:hover {
+    border-color: rgba(167, 139, 250, 0.4) !important;
+    box-shadow: var(--shadow-hover) !important;
+}
+
+html[data-theme="dark"] .parent-avatar-badge {
+    background: rgba(124, 58, 237, 0.25) !important;
+    color: #c4b5fd !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+html[data-theme="dark"] .parent-card-title {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .parent-phone-masked {
+    color: #c4b5fd !important;
+}
+
+html[data-theme="dark"] .parent-phone-empty {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .parent-badge-verified {
+    color: #34d399 !important;
+}
+
+/* Wellness Activities & Meditations */
+html[data-theme="dark"] .intro-card,
+html[data-theme="dark"] .wellness-reminder,
+html[data-theme="dark"] .reminder-card {
+    background: linear-gradient(135deg, #1d1630, #251c3d) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .intro-icon,
+html[data-theme="dark"] .feedback-icon,
+html[data-theme="dark"] .reminder-icon,
+html[data-theme="dark"] .mood-modal-icon,
+html[data-theme="dark"] .timer-icon-badge,
+html[data-theme="dark"] .empty-icon {
+    background: #251c3d !important;
+    color: #a78bfa !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .activity-workspace {
+    background: #1d1630 !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .workspace-top {
+    border-bottom-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .breathing-circle {
+    background: linear-gradient(135deg, #1d1630, #251c3d) !important;
+    border-color: var(--accent-purple) !important;
+    color: #c4b5fd !important;
+}
+
+html[data-theme="dark"] .breathing-circle.inhale {
+    background: linear-gradient(135deg, #251c3d, #2e1065) !important;
+    box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4) !important;
+}
+
+html[data-theme="dark"] .breathing-circle.exhale {
+    background: linear-gradient(135deg, #1d1630, #251c3d) !important;
+}
+
+html[data-theme="dark"] .journal-prompt {
+    background: #251c3d !important;
+    border-color: var(--border-color) !important;
+    color: #c4b5fd !important;
+}
+
+html[data-theme="dark"] .journal-content textarea {
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border-color: var(--input-border) !important;
+}
+
+html[data-theme="dark"] .grounding-step:hover {
+    background: #251c3d !important;
+    border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+/* Recommendations & Stretching */
+html[data-theme="dark"] .timer-circle-bg {
+    stroke: #251c3d !important;
+}
+
+html[data-theme="dark"] .stretch-duration {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: #c4b5fd !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+html[data-theme="dark"] .stretch-open-btn {
+    background: #251c3d !important;
+    color: #c4b5fd !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .stretch-card:hover .stretch-open-btn {
+    background: var(--accent-purple-gradient) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+html[data-theme="dark"] .completion-badge {
+    background: rgba(124, 58, 237, 0.25) !important;
+    color: #c4b5fd !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+/* Daily Progress - Recommendations & Milestones */
+html[data-theme="dark"] .recommendations {
+    background: var(--bg-card-glass) !important;
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="dark"] .recommendations .section-heading h2 {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .recommendations .section-label {
+    color: var(--accent-purple) !important;
+}
+
+html[data-theme="dark"] .recommend-card {
+    background: #251c3d !important;
+    background-color: #251c3d !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-theme="dark"] .recommend-card:hover {
+    border-color: rgba(167, 139, 250, 0.45) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+html[data-theme="dark"] .recommend-card h3,
+html[data-theme="dark"] .recommend-card h4 {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .recommend-card p {
+    color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .recommend-card a {
+    color: #a78bfa !important;
+}
+
+html[data-theme="dark"] .achievements .section-heading h2 {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .achievements .section-label {
+    color: var(--accent-purple) !important;
+}
+
+/* Badges & Pills across pages */
+html[data-theme="dark"] .activity-time,
+html[data-theme="dark"] .song-language,
+html[data-theme="dark"] .profile-badge,
+html[data-theme="dark"] .memory-key,
+html[data-theme="dark"] .mood-tag {
+    background: rgba(124, 58, 237, 0.2) !important;
+    color: #c4b5fd !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+}
+
+html[data-theme="dark"] .song-note,
+html[data-theme="dark"] .playlist-icon {
+    background: #251c3d !important;
+    color: #a78bfa !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+html[data-theme="dark"] .cinema-result-header,
+html[data-theme="dark"] .playlist-result-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+/* Motivation & Quotes */
+html[data-theme="dark"] .motivation-card {
+    background: linear-gradient(135deg, #1d1630, #251c3d) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] #motivationText {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .motivation-author .line {
+    background: var(--border-color) !important;
+}
+
+/* ---------------------------------------------------------
+   5. HEADINGS, TEXT & LABELS
+   --------------------------------------------------------- */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] .welcome-section h2,
+html[data-theme="dark"] .section-heading-title,
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .stat-card h2,
+html[data-theme="dark"] .chart-header h2,
+html[data-theme="dark"] .help-number-text,
+html[data-theme="dark"] .user-name,
+html[data-theme="dark"] .quote-text,
+html[data-theme="dark"] strong,
+html[data-theme="dark"] b {
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] .welcome-subtitle,
+html[data-theme="dark"] .subtitle,
+html[data-theme="dark"] .section-subtitle,
+html[data-theme="dark"] .settings-subtitle,
+html[data-theme="dark"] .section-heading p,
+html[data-theme="dark"] .stat-card p,
+html[data-theme="dark"] .help-description,
+html[data-theme="dark"] .quote-author,
+html[data-theme="dark"] .profile-email,
+html[data-theme="dark"] .activity-card p,
+html[data-theme="dark"] .stretch-card p,
+html[data-theme="dark"] .music-card p,
+html[data-theme="dark"] .sound-card p,
+html[data-theme="dark"] .chat-cta-desc,
+html[data-theme="dark"] .thought-space-desc,
+html[data-theme="dark"] label:not(.switch):not(.btn):not(.primary-btn) {
+    color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .section-label,
+html[data-theme="dark"] .history-title {
+    color: #a78bfa !important;
+}
+
+/* ---------------------------------------------------------
+   6. INPUTS, TEXTAREAS & FORM CONTROLS
+   --------------------------------------------------------- */
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="email"],
+html[data-theme="dark"] input[type="tel"],
+html[data-theme="dark"] input[type="password"],
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] .thought-textarea,
+html[data-theme="dark"] .input-area {
+    background: var(--input-bg) !important;
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border-color: var(--input-border) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus,
+html[data-theme="dark"] .input-area:focus-within {
+    border-color: var(--accent-purple) !important;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+}
+
+/* ---------------------------------------------------------
+   7. CHAT SPECIFIC COMPONENTS
+   --------------------------------------------------------- */
+html[data-theme="dark"] .chat-area,
+html[data-theme="dark"] .chat-messages {
+    background: transparent !important;
+}
+
+html[data-theme="dark"] .chat-topbar,
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] header.topbar,
+html[data-theme="dark"] .page-header,
+html[data-theme="dark"] .settings-header {
+    background: rgba(15, 11, 31, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .ai-message .bubble,
+html[data-theme="dark"] .bubble.ai {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-theme="dark"] .user-message .bubble,
+html[data-theme="dark"] .bubble.user {
+    background: var(--accent-purple-gradient) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .speak-btn,
+html[data-theme="dark"] .tts-toggle,
+html[data-theme="dark"] .header-icon:not(.emergency-header-icon) {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: #c8c1d9 !important;
+}
+
+/* ---------------------------------------------------------
+   8. BUTTONS & CHIPS IN DARK MODE
+   --------------------------------------------------------- */
+html[data-theme="dark"] .back-btn,
+html[data-theme="dark"] .secondary-btn,
+html[data-theme="dark"] .back-dashboard-btn,
+html[data-theme="dark"] .action-btn,
+html[data-theme="dark"] .quote-icon,
+html[data-theme="dark"] .reminder-icon,
+html[data-theme="dark"] .category-btn,
+html[data-theme="dark"] .mood-btn,
+html[data-theme="dark"] .daily-mood-btn,
+html[data-theme="dark"] .mood-option,
+html[data-theme="dark"] .language,
+html[data-theme="dark"] .play-btn,
+html[data-theme="dark"] .timer-btn-pause,
+html[data-theme="dark"] .timer-btn-reset,
+html[data-theme="dark"] .breathing-btn-pause,
+html[data-theme="dark"] .breathing-btn-reset,
+html[data-theme="dark"] .close-workspace,
+html[data-theme="dark"] .close-cinema-btn,
+html[data-theme="dark"] .close-playlist,
+html[data-theme="dark"] .mood-close,
+html[data-theme="dark"] .call-action-btn.outline {
+    background: #251c3d !important;
+    background-color: #251c3d !important;
+    border: 1.5px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .back-btn:hover,
+html[data-theme="dark"] .secondary-btn:hover,
+html[data-theme="dark"] .action-btn:hover,
+html[data-theme="dark"] .category-btn:hover,
+html[data-theme="dark"] .mood-btn:hover,
+html[data-theme="dark"] .daily-mood-btn:hover,
+html[data-theme="dark"] .mood-option:hover,
+html[data-theme="dark"] .language:hover {
+    background: rgba(167, 139, 250, 0.22) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-purple) !important;
+}
+
+/* Primary purple buttons keep white text */
+html[data-theme="dark"] .primary-btn,
+html[data-theme="dark"] .new-chat,
+html[data-theme="dark"] .save-mood-btn,
+html[data-theme="dark"] #saveDailyMoodButton,
+html[data-theme="dark"] .feedback-btn,
+html[data-theme="dark"] .card-btn,
+html[data-theme="dark"] .stretch-open-btn,
+html[data-theme="dark"] .call-action-btn.primary,
+html[data-theme="dark"] .btn-primary {
+    color: #ffffff !important;
+}
+
+/* White Hero card button remains crisp */
+html[data-theme="dark"] .hero-card .btn1 {
+    background: #ffffff !important;
+    color: #6d28d9 !important;
+}
+
+html[data-theme="dark"] .hero-card .btn2 {
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+}
+
+/* Active mood pill on Daily Progress */
+html[data-theme="dark"] #activeMoodPill {
+    background: rgba(139, 92, 246, 0.18) !important;
+    border-color: rgba(167, 139, 250, 0.3) !important;
+    color: #c4b5fd !important;
+}
+
+/* Achievements list items */
+html[data-theme="dark"] #achievementList li {
+    background: #251c3d !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* SOS and Danger items */
+html[data-theme="dark"] .help-card.emergency-primary {
+    border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+/* ---------------------------------------------------------
+   9. SMOOTH THEME TRANSITION
+   --------------------------------------------------------- */
+body,
+.card,
+.stat-card,
+.sidebar,
+.chat-sidebar,
+.chat-box,
+.topbar,
+input,
+textarea,
+select,
+button {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
